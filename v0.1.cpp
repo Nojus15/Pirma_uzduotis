@@ -59,7 +59,12 @@ int main()
         else
             i->rez = galutinisMed(i->paz, i->n);
     }
-
+    cout << std::left << std::setw(20) << "Vardas" << std::left << std::setw(20) << "Pavarde";
+    if (rez)
+        cout << "Galutinis (Vid.)" << endl;
+    else
+        cout << "Galutinis (Med.)" << endl;
+    cout << "-------------------------------------------------------------------------------------------------------------------" << endl;
     for (data *i = mas; i < mas + n; i++)
         isvedimas(*i);
 }
@@ -98,14 +103,13 @@ void ivestis(data &temp)
 }
 void isvedimas(data &temp)
 {
-    cout << std::setw(20) << temp.vardas << std::setw(20) << temp.pavarde << endl;
+    cout << std::left << std::setw(20) << temp.vardas << std::left << std::setw(20) << temp.pavarde;
+    cout << std::setprecision(2) << temp.rez * 0.4 + temp.egz * 0.6 << endl;
     for (int i = 0; i < temp.n; i++)
     {
         cout << temp.paz[i] << " ";
     }
     cout << endl;
-    cout << temp.egz << endl;
-    cout << std::setprecision(2) << temp.rez << endl;
 }
 double galutinisVid(int *paz, int kiek)
 {
@@ -170,7 +174,7 @@ bool checkMark(int n)
 void generateRandomMark(data &temp)
 {
     srand(time(NULL));
-    cout << "Jei norite generuoti pazymi spauskite 1, jei norite baigti spauskite 0" << endl;
+    cout << "Jei norite generuoti pazymi iveskite 1, jei norite baigti iveskite 0" << endl;
     int run;
     while (true)
     {
