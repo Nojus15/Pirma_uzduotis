@@ -1,8 +1,10 @@
 #include <iostream>
 #include <iomanip>
+#include <random>
 
 using std::cin;
 using std::cout;
+using std::endl;
 using std::string;
 
 struct data
@@ -20,6 +22,9 @@ double galutinisVid(int *paz, int kiek);
 double galutinisMed(int *paz, int kiek);
 int enterValidInt();
 bool checkMark(int n);
+void generateRandomMark(data &temp);
+void enterMarkManually(data &temp);
+void addNewMark(data &temp, int mark);
 
 int main()
 {
@@ -34,7 +39,7 @@ int main()
     data *mas = new data[n];
     for (data *i = mas; i < mas + n; i++)
         ivestis(*i);
-    cout << std::endl;
+    cout << endl;
     for (data *i = mas; i < mas + n; i++)
         i->rez = galutinisMed(i->paz, i->n);
     for (data *i = mas; i < mas + n; i++)
@@ -53,43 +58,36 @@ void ivestis(data &temp)
         cin >> temp.egz;
         if (temp.egz > 0 && temp.egz <= 10)
             break;
+        else
+            cout << "Blogas egzamino pazymys" << endl;
     }
-
-    cout << "Veskite pazymius. Baige vedima iveskite 0" << std::endl;
-
-    int t;
+    cout << "Jei norite ivesti pazymius rankom spauskite 1, jei norite generuoti automatiskai spauskite 0" << endl;
+    int mode;
     while (true)
     {
-        t = enterValidInt();
-        if (t == 0)
+        mode = enterValidInt();
+        if (mode == 1 || mode == 0)
             break;
-        else if (checkMark(t))
-        {
-            int *M = new int[temp.n];
-            for (int i = 0; i < temp.n; i++)
-                M[i] = temp.paz[i];
-            delete temp.paz;
-            temp.n++;
-            temp.paz = new int[temp.n];
-            for (int i = 0; i < temp.n - 1; i++)
-                temp.paz[i] = M[i];
-            temp.paz[temp.n - 1] = t;
-            delete M;
-        }
+        else
+            cout << "Blogas skaicius" << endl;
     }
 
-    cout << "pazymiai suvesti" << std::endl;
+    if (mode)
+        enterMarkManually(temp);
+    else
+        generateRandomMark(temp);
+    cout << "pazymiai suvesti" << endl;
 }
 void isvedimas(data &temp)
 {
-    cout << std::setw(20) << temp.vardas << std::setw(20) << temp.pavarde << std::endl;
+    cout << std::setw(20) << temp.vardas << std::setw(20) << temp.pavarde << endl;
     for (int i = 0; i < temp.n; i++)
     {
         cout << temp.paz[i] << " ";
     }
-    cout << std::endl;
-    cout << temp.egz << std::endl;
-    cout << std::setprecision(2) << temp.rez << std::endl;
+    cout << endl;
+    cout << temp.egz << endl;
+    cout << std::setprecision(2) << temp.rez << endl;
 }
 double galutinisVid(int *paz, int kiek)
 {
@@ -135,7 +133,7 @@ int enterValidInt()
             return n;
         else
         {
-            cout << "Ne numeris" << std::endl;
+            cout << "Ne numeris" << endl;
             cin.clear();
             cin.ignore(INT_MAX, '\n');
         }
@@ -147,7 +145,55 @@ bool checkMark(int n)
         return true;
     else
     {
-        cout << "Blogas pazymys" << std::endl;
+        cout << "Blogas pazymys" << endl;
         return false;
     }
+}
+void generateRandomMark(data &temp)
+{
+    srand(time(NULL));
+    cout << "Jei norite generuoti pazymi spauskite 1, jei norite baigti spauskite 0" << endl;
+    int run;
+    while (true)
+    {
+        run = enterValidInt();
+        if (run == 1)
+        {
+            int newMark = 1 + rand() % 10;
+            addNewMark(temp, newMark);
+        }
+        else if (run == 0)
+            break;
+        else
+            cout << "Blogas skaicius" << endl;
+    }
+
+    1 + rand() % 10;
+}
+void enterMarkManually(data &temp)
+{
+    cout << "Veskite pazymius. Baige vedima iveskite 0" << endl;
+
+    int t;
+    while (true)
+    {
+        t = enterValidInt();
+        if (t == 0)
+            break;
+        else if (checkMark(t))
+            addNewMark(temp, t);
+    }
+}
+void addNewMark(data &temp, int mark)
+{
+    int *M = new int[temp.n];
+    for (int i = 0; i < temp.n; i++)
+        M[i] = temp.paz[i];
+    delete temp.paz;
+    temp.n++;
+    temp.paz = new int[temp.n];
+    for (int i = 0; i < temp.n - 1; i++)
+        temp.paz[i] = M[i];
+    temp.paz[temp.n - 1] = mark;
+    delete M;
 }
