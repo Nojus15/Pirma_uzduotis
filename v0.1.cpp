@@ -43,9 +43,12 @@ int main()
 
 void ivestis(data &temp)
 {
-    cout << "Iveskite varda: "; cin >> temp.vardas;
-    cout << "Iveskite pavarde: "; cin >> temp.pavarde;
-    cout << "Iveskite egzamino ivertinima: "; cin >> temp.egz;
+    cout << "Iveskite varda: ";
+    cin >> temp.vardas;
+    cout << "Iveskite pavarde: ";
+    cin >> temp.pavarde;
+    cout << "Iveskite egzamino ivertinima: ";
+    cin >> temp.egz;
 
     /*for (int i = 0; i < temp.n; i++)
     {
@@ -56,17 +59,21 @@ void ivestis(data &temp)
     cout << "Veskite pazymius. Baige vedima iveskite 0" << std::endl;
 
     int t;
-    while (true){
+    while (true)
+    {
         cin >> t;
         if (t == 0)
             break;
-        else if (t > 0 && t <= 10){
+        else if (t > 0 && t <= 10)
+        {
             int *M = new int[temp.n];
-            for (int i = 0; i < temp.n; i++) M[i] = temp.paz[i];
+            for (int i = 0; i < temp.n; i++)
+                M[i] = temp.paz[i];
             delete temp.paz;
             temp.n++;
             temp.paz = new int[temp.n];
-            for (int i = 0; i < temp.n - 1; i++) temp.paz[i] = M[i];
+            for (int i = 0; i < temp.n - 1; i++)
+                temp.paz[i] = M[i];
             temp.paz[temp.n - 1] = t;
             delete M;
         }
@@ -84,7 +91,7 @@ void isvedimas(data &temp)
     }
     cout << std::endl;
     cout << temp.egz << std::endl;
-    cout << temp.rez << std::endl;
+    cout << std::setprecision(2) << temp.rez << std::endl;
 }
 double galutinisVid(int *paz, int kiek)
 {
