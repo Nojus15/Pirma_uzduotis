@@ -40,8 +40,26 @@ int main()
     for (data *i = mas; i < mas + n; i++)
         ivestis(*i);
     cout << endl;
+
+    cout << "Jei norite skaiciuoti vidurki spauskite 1, jei mediana spauskite 0" << endl;
+    int rez;
+    while (true)
+    {
+        rez = enterValidInt();
+        if (rez == 1 || rez == 0)
+            break;
+        else
+            cout << "Blogas skaicius" << endl;
+    }
+
     for (data *i = mas; i < mas + n; i++)
-        i->rez = galutinisMed(i->paz, i->n);
+    {
+        if (rez == 1)
+            i->rez = galutinisVid(i->paz, i->n);
+        else
+            i->rez = galutinisMed(i->paz, i->n);
+    }
+
     for (data *i = mas; i < mas + n; i++)
         isvedimas(*i);
 }
