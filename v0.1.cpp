@@ -18,6 +18,8 @@ void ivestis(data &temp);
 void isvedimas(data &temp);
 double galutinisVid(int *paz, int kiek);
 double galutinisMed(int *paz, int kiek);
+int enterValidInt();
+bool checkMark(int n);
 
 int main()
 {
@@ -66,25 +68,27 @@ void ivestis(data &temp)
     int t;
     while (true)
     {
-        cin >> t;
-        if (t == 0)
-            break;
-        else if (t > 0 && t <= 10)
+        while (true)
         {
-            int *M = new int[temp.n];
-            for (int i = 0; i < temp.n; i++)
-                M[i] = temp.paz[i];
-            delete temp.paz;
-            temp.n++;
-            temp.paz = new int[temp.n];
-            for (int i = 0; i < temp.n - 1; i++)
-                temp.paz[i] = M[i];
-            temp.paz[temp.n - 1] = t;
-            delete M;
+            t = enterValidInt();
+            if (t == 0)
+                goto pabaiga;
+            else if (checkMark(t))
+                break;
         }
-        else
-            cout << "Blogas pazymys" << std::endl;
+
+        int *M = new int[temp.n];
+        for (int i = 0; i < temp.n; i++)
+            M[i] = temp.paz[i];
+        delete temp.paz;
+        temp.n++;
+        temp.paz = new int[temp.n];
+        for (int i = 0; i < temp.n - 1; i++)
+            temp.paz[i] = M[i];
+        temp.paz[temp.n - 1] = t;
+        delete M;
     }
+pabaiga:
     cout << "pazymiai suvesti" << std::endl;
 }
 void isvedimas(data &temp)
@@ -130,5 +134,31 @@ double galutinisMed(int paz[], int kiek)
     else
     {
         return paz[kiek / 2];
+    }
+}
+int enterValidInt()
+{
+    int n;
+    while (true)
+    {
+        cin >> n;
+        if (cin.good())
+            return n;
+        else
+        {
+            cout << "Ne numeris" << std::endl;
+            cin.clear();
+            cin.ignore(INT_MAX, '\n');
+        }
+    }
+}
+bool checkMark(int n)
+{
+    if (n > 0 && n <= 10)
+        return true;
+    else
+    {
+        cout << "Blogas pazymys" << std::endl;
+        return false;
     }
 }
