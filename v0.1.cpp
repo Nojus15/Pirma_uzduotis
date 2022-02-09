@@ -23,10 +23,8 @@ bool checkMark(int n);
 
 int main()
 {
-    int n;
     cout << "Iveskite studentu kieki: ";
-    cin >> n;
-
+    int n = enterValidInt();
     if (n <= 0)
     {
         cout << "Blogas studentu kiekis";
@@ -57,38 +55,29 @@ void ivestis(data &temp)
             break;
     }
 
-    /*for (int i = 0; i < temp.n; i++)
-    {
-        cout << "Iveskite " << i + 1 << " pazymi: ";
-        cin >> temp.paz[i];
-    }*/
-
     cout << "Veskite pazymius. Baige vedima iveskite 0" << std::endl;
 
     int t;
     while (true)
     {
-        while (true)
+        t = enterValidInt();
+        if (t == 0)
+            break;
+        else if (checkMark(t))
         {
-            t = enterValidInt();
-            if (t == 0)
-                goto pabaiga;
-            else if (checkMark(t))
-                break;
+            int *M = new int[temp.n];
+            for (int i = 0; i < temp.n; i++)
+                M[i] = temp.paz[i];
+            delete temp.paz;
+            temp.n++;
+            temp.paz = new int[temp.n];
+            for (int i = 0; i < temp.n - 1; i++)
+                temp.paz[i] = M[i];
+            temp.paz[temp.n - 1] = t;
+            delete M;
         }
-
-        int *M = new int[temp.n];
-        for (int i = 0; i < temp.n; i++)
-            M[i] = temp.paz[i];
-        delete temp.paz;
-        temp.n++;
-        temp.paz = new int[temp.n];
-        for (int i = 0; i < temp.n - 1; i++)
-            temp.paz[i] = M[i];
-        temp.paz[temp.n - 1] = t;
-        delete M;
     }
-pabaiga:
+
     cout << "pazymiai suvesti" << std::endl;
 }
 void isvedimas(data &temp)
