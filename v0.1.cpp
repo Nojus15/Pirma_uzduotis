@@ -48,7 +48,12 @@ void ivestis(data &temp)
     cout << "Iveskite pavarde: ";
     cin >> temp.pavarde;
     cout << "Iveskite egzamino ivertinima: ";
-    cin >> temp.egz;
+    while (true)
+    {
+        cin >> temp.egz;
+        if (temp.egz > 0 && temp.egz <= 10)
+            break;
+    }
 
     /*for (int i = 0; i < temp.n; i++)
     {
