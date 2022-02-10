@@ -30,6 +30,8 @@ int generateRandomInt();
 
 int main()
 {
+    srand(time(NULL));
+
     cout << "Iveskite studentu kieki: ";
     int n = enterValidInt();
     if (n <= 0)
@@ -168,7 +170,6 @@ bool checkMark(int n)
 }
 int generateRandomInt()
 {
-    srand(time(NULL));
     return 1 + rand() % 10;
 }
 void generateRandomMark(data &temp)
