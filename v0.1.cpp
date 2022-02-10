@@ -25,6 +25,8 @@ bool checkMark(int n);
 void generateRandomMark(data &temp);
 void enterMarkManually(data &temp);
 void addNewMark(data &temp, int mark);
+bool modeCheck();
+int generateRandomInt();
 
 int main()
 {
@@ -42,15 +44,7 @@ int main()
     cout << endl;
 
     cout << "Jei norite skaiciuoti vidurki spauskite 1, jei mediana spauskite 0" << endl;
-    int rez;
-    while (true)
-    {
-        rez = enterValidInt();
-        if (rez == 1 || rez == 0)
-            break;
-        else
-            cout << "Blogas skaicius" << endl;
-    }
+    int rez = modeCheck();
 
     for (data *i = mas; i < mas + n; i++)
     {
@@ -75,26 +69,27 @@ void ivestis(data &temp)
     cin >> temp.vardas;
     cout << "Iveskite pavarde: ";
     cin >> temp.pavarde;
-    cout << "Iveskite egzamino ivertinima: ";
-    while (true)
+    cout << "Jei norite egzamino rezultata ivesti ranka spauskite 1, jei generuoti automatiskai spauskite 0" << endl;
+    bool mode = modeCheck();
+    if (mode)
     {
-        cin >> temp.egz;
-        if (temp.egz > 0 && temp.egz <= 10)
-            break;
-        else
-            cout << "Blogas egzamino pazymys" << endl;
+        cout << "Iveskite egzamino ivertinima: ";
+        while (true)
+        {
+            int egz = enterValidInt();
+            if (checkMark(egz))
+            {
+                temp.egz = egz;
+                break;
+            }
+        }
     }
-    cout << "Jei norite ivesti pazymius rankom spauskite 1, jei norite generuoti automatiskai spauskite 0" << endl;
-    int mode;
-    while (true)
-    {
-        mode = enterValidInt();
-        if (mode == 1 || mode == 0)
-            break;
-        else
-            cout << "Blogas skaicius" << endl;
-    }
+    else
+        temp.egz = generateRandomInt();
 
+    ////////// pazymiu vedimas ///////////
+    cout << "Jei norite pazymius ivesti ranka spauskite 1, jei generuoti automatiskai spauskite 0" << endl;
+    mode = modeCheck();
     if (mode)
         enterMarkManually(temp);
     else
@@ -171,26 +166,24 @@ bool checkMark(int n)
         return false;
     }
 }
-void generateRandomMark(data &temp)
+int generateRandomInt()
 {
     srand(time(NULL));
+    return 1 + rand() % 10;
+}
+void generateRandomMark(data &temp)
+{
     cout << "Jei norite generuoti pazymi iveskite 1, jei norite baigti iveskite 0" << endl;
-    int run;
     while (true)
     {
-        run = enterValidInt();
-        if (run == 1)
+        int run = modeCheck();
+        if (run)
         {
-            int newMark = 1 + rand() % 10;
-            addNewMark(temp, newMark);
+            addNewMark(temp, generateRandomInt());
         }
-        else if (run == 0)
-            break;
         else
-            cout << "Blogas skaicius" << endl;
+            break;
     }
-
-    1 + rand() % 10;
 }
 void enterMarkManually(data &temp)
 {
@@ -218,4 +211,15 @@ void addNewMark(data &temp, int mark)
         temp.paz[i] = M[i];
     temp.paz[temp.n - 1] = mark;
     delete M;
+}
+bool modeCheck()
+{
+    while (true)
+    {
+        int mode = enterValidInt();
+        if (mode == 1 || mode == 0)
+            return mode;
+        else
+            cout << "Blogas skaicius" << endl;
+    }
 }
