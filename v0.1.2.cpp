@@ -33,28 +33,31 @@ int main()
 {
     srand(time(NULL));
 
-    cout << "Iveskite studentu kieki: ";
-    int n = enterValidInt();
-    if (n <= 0)
-    {
-        cout << "Blogas studentu kiekis";
-        return 0;
-    }
+    vector<data> studentai;
 
-    data *mas = new data[n];
-    for (data *i = mas; i < mas + n; i++)
-        ivestis(*i);
-    cout << endl;
+    while (true)
+    {
+        cout << "Jei norite ivesti studenta spauskite 1, jei norite baigti spauskite 0" << endl;
+        bool run = modeCheck();
+        if (!run)
+            break;
+        else
+        {
+            data temp;
+            ivestis(temp);
+            studentai.push_back(temp);
+        }
+    }
 
     cout << "Jei norite skaiciuoti vidurki spauskite 1, jei mediana spauskite 0" << endl;
     int rez = modeCheck();
 
-    for (data *i = mas; i < mas + n; i++)
+    for (auto &el : studentai)
     {
         if (rez == 1)
-            i->rez = galutinisVid(i->paz);
+            el.rez = galutinisVid(el.paz);
         else
-            i->rez = galutinisMed(i->paz);
+            el.rez = galutinisMed(el.paz);
     }
     cout << std::left << std::setw(20) << "Vardas" << std::left << std::setw(20) << "Pavarde";
     if (rez)
@@ -62,8 +65,8 @@ int main()
     else
         cout << "Galutinis (Med.)" << endl;
     cout << "-------------------------------------------------------------------------------------------------------------------" << endl;
-    for (data *i = mas; i < mas + n; i++)
-        isvedimas(*i);
+    for (auto &el : studentai)
+        isvedimas(el);
 }
 
 void ivestis(data &temp)

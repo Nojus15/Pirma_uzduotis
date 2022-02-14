@@ -32,23 +32,35 @@ int main()
 {
     srand(time(NULL));
 
-    cout << "Iveskite studentu kieki: ";
-    int n = enterValidInt();
-    if (n <= 0)
+    data *studentai = nullptr;
+
+    int studKiek = 0;
+    while (true)
     {
-        cout << "Blogas studentu kiekis";
-        return 0;
+        cout << "Jei norite ivesti studenta spauskite 1, jei norite baigti spauskite 0" << endl;
+        bool run = modeCheck();
+        if (!run)
+            break;
+        else
+        {
+            studKiek++;
+            data temp;
+            ivestis(temp);
+            data *newStudentai = new data[studKiek - 1];
+            for (int i = 0; i < studKiek - 1; i++)
+                newStudentai[i] = studentai[i];
+            delete[] studentai;
+            studentai = new data[studKiek];
+            for (int i = 0; i < studKiek - 1; i++)
+                studentai[i] = newStudentai[i];
+            studentai[studKiek - 1] = temp;
+            delete[] newStudentai;
+        }
     }
-
-    data *mas = new data[n];
-    for (data *i = mas; i < mas + n; i++)
-        ivestis(*i);
-    cout << endl;
-
     cout << "Jei norite skaiciuoti vidurki spauskite 1, jei mediana spauskite 0" << endl;
     int rez = modeCheck();
 
-    for (data *i = mas; i < mas + n; i++)
+    for (data *i = studentai; i < studentai + studKiek; i++)
     {
         if (rez == 1)
             i->rez = galutinisVid(i->paz, i->n);
@@ -61,7 +73,7 @@ int main()
     else
         cout << "Galutinis (Med.)" << endl;
     cout << "-------------------------------------------------------------------------------------------------------------------" << endl;
-    for (data *i = mas; i < mas + n; i++)
+    for (data *i = studentai; i < studentai + studKiek; i++)
         isvedimas(*i);
 }
 
