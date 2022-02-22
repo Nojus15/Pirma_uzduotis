@@ -29,11 +29,22 @@ void enterMarkManually(data &temp);
 bool modeCheck();
 int generateRandomInt();
 
+bool egz;
+bool paz;
+bool rez;
+
 int main()
 {
     srand(time(NULL));
 
     vector<data> studentai;
+
+    cout << "Jei norite egzamino rezultata ivesti ranka spauskite 1, jei generuoti automatiskai spauskite 0" << endl;
+    egz = modeCheck();
+    cout << "Jei norite pazymius ivesti ranka spauskite 1, jei generuoti automatiskai spauskite 0" << endl;
+    paz = modeCheck();
+    cout << "Jei norite skaiciuoti vidurki spauskite 1, jei mediana spauskite 0" << endl;
+    rez = modeCheck();
 
     while (true)
     {
@@ -48,9 +59,6 @@ int main()
             studentai.push_back(temp);
         }
     }
-
-    cout << "Jei norite skaiciuoti vidurki spauskite 1, jei mediana spauskite 0" << endl;
-    int rez = modeCheck();
 
     for (auto &el : studentai)
     {
@@ -75,9 +83,8 @@ void ivestis(data &temp)
     cin >> temp.vardas;
     cout << "Iveskite pavarde: ";
     cin >> temp.pavarde;
-    cout << "Jei norite egzamino rezultata ivesti ranka spauskite 1, jei generuoti automatiskai spauskite 0" << endl;
-    bool mode = modeCheck();
-    if (mode)
+
+    if (egz)
     {
         cout << "Iveskite egzamino ivertinima: ";
         while (true)
@@ -94,9 +101,7 @@ void ivestis(data &temp)
         temp.egz = generateRandomInt();
 
     ////////// pazymiu vedimas ///////////
-    cout << "Jei norite pazymius ivesti ranka spauskite 1, jei generuoti automatiskai spauskite 0" << endl;
-    mode = modeCheck();
-    if (mode)
+    if (paz)
         enterMarkManually(temp);
     else
         generateRandomMark(temp);
