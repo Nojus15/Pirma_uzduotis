@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 #include <iomanip>
 #include <random>
 #include <vector>
@@ -19,7 +20,7 @@ struct data
 };
 
 void ivestis(data &temp);
-void isvedimas(data &temp);
+void isvedimas(data &temp, std::ofstream &fout);
 double galutinisVid(vector<int> paz);
 double galutinisMed(vector<int> paz);
 int enterValidInt();
@@ -37,29 +38,62 @@ int main()
 {
     srand(time(NULL));
 
-    vector<data> studentai;
-
-    cout << "Jei norite egzamino rezultata ivesti ranka spauskite 1, jei generuoti automatiskai spauskite 0" << endl;
-    egz = modeCheck();
-    cout << "Jei norite pazymius ivesti ranka spauskite 1, jei generuoti automatiskai spauskite 0" << endl;
-    paz = modeCheck();
+    cout << "Jei norite rasyti pats spauskite 1, jei skaityti is failo spauskite 0" << endl;
+    bool manual = modeCheck();
     cout << "Jei norite skaiciuoti vidurki spauskite 1, jei mediana spauskite 0" << endl;
     rez = modeCheck();
 
-    while (true)
+    vector<string> length;
+
+    vector<data> studentai;
+
+    std::ofstream fout("rez.txt");
+
+    if (!manual)
     {
-        cout << "Jei norite ivesti studenta spauskite 1, jei norite baigti spauskite 0" << endl;
-        bool run = modeCheck();
-        if (!run)
-            break;
-        else
+        std::ifstream fin("studentai.txt");
+        string t;
+        while ((fin.peek() != '\n') && (fin >> t))
+            length.push_back(t);
+        length.resize(length.size() - 3);
+        cout << length.size() << endl;
+
+        while (!fin.eof())
         {
-            data temp;
-            ivestis(temp);
-            studentai.push_back(temp);
+            int p;
+            data t;
+            fin >> t.vardas >> t.pavarde;
+            for (auto &el : length)
+            {
+                fin >> p;
+                t.paz.push_back(p);
+            }
+            fin >> t.egz;
+            studentai.push_back(t);
+        }
+        cout << studentai.size() << endl;
+    }
+    else
+    {
+        cout << "Jei norite egzamino rezultata ivesti ranka spauskite 1, jei generuoti automatiskai spauskite 0" << endl;
+        egz = modeCheck();
+        cout << "Jei norite pazymius ivesti ranka spauskite 1, jei generuoti automatiskai spauskite 0" << endl;
+        paz = modeCheck();
+
+        while (true)
+        {
+            cout << "Jei norite ivesti studenta spauskite 1, jei norite baigti spauskite 0" << endl;
+            bool run = modeCheck();
+            if (!run)
+                break;
+            else
+            {
+                data temp;
+                ivestis(temp);
+                studentai.push_back(temp);
+            }
         }
     }
-
     for (auto &el : studentai)
     {
         if (rez == 1)
@@ -67,14 +101,14 @@ int main()
         else
             el.rez = galutinisMed(el.paz);
     }
-    cout << std::left << std::setw(20) << "Vardas" << std::left << std::setw(20) << "Pavarde";
+    fout << std::left << std::setw(20) << "Vardas" << std::left << std::setw(20) << "Pavarde";
     if (rez)
-        cout << "Galutinis (Vid.)" << endl;
+        fout << "Galutinis (Vid.)" << endl;
     else
-        cout << "Galutinis (Med.)" << endl;
-    cout << "-------------------------------------------------------------------------------------------------------------------" << endl;
+        fout << "Galutinis (Med.)" << endl;
+    fout << "-------------------------------------------------------------------------------------------------------------------" << endl;
     for (auto &el : studentai)
-        isvedimas(el);
+        isvedimas(el, fout);
 }
 
 void ivestis(data &temp)
@@ -107,15 +141,10 @@ void ivestis(data &temp)
         generateRandomMark(temp);
     cout << "pazymiai suvesti" << endl;
 }
-void isvedimas(data &temp)
+void isvedimas(data &temp, std::ofstream &fout)
 {
-    cout << std::left << std::setw(20) << temp.vardas << std::left << std::setw(20) << temp.pavarde;
-    cout << std::setprecision(2) << temp.rez * 0.4 + temp.egz * 0.6 << endl;
-    for (int i = 0; i < temp.paz.size(); i++)
-    {
-        cout << temp.paz[i] << " ";
-    }
-    cout << endl;
+    fout << std::left << std::setw(20) << temp.vardas << std::left << std::setw(20) << temp.pavarde;
+    fout << std::setprecision(2) << temp.rez * 0.4 + temp.egz * 0.6 << endl;
 }
 double galutinisVid(vector<int> paz)
 {
