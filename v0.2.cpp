@@ -17,7 +17,8 @@ struct data
     string vardas, pavarde;
     vector<int> paz;
     int egz;
-    double rez;
+    double vid;
+    double med;
 };
 
 void ivestis(data &temp);
@@ -35,13 +36,14 @@ void read(std::ifstream &fin, std::vector<string> &length, std::vector<data> &st
 bool egz;
 bool paz;
 bool rez;
+bool manual;
 
 int main()
 {
     srand(time(NULL));
 
     cout << "Jei norite rasyti pats spauskite 1, jei skaityti is failo spauskite 0" << endl;
-    bool manual = modeCheck();
+    manual = !modeCheck();
     cout << "Jei norite skaiciuoti vidurki spauskite 1, jei mediana spauskite 0" << endl;
     rez = modeCheck();
 
@@ -51,7 +53,7 @@ int main()
 
     std::ofstream fout("rez.txt");
 
-    if (!manual)
+    if (manual)
     {
         std::ifstream fin("studentai.txt");
         read(fin, length, studentai);
@@ -80,20 +82,21 @@ int main()
 
     for (auto &el : studentai)
     {
-        if (rez)
-            el.rez = galutinisVid(el.paz, el.egz);
-        else
-            el.rez = galutinisMed(el.paz, el.egz);
+        if (rez || manual)
+            el.vid = galutinisVid(el.paz, el.egz);
+        if (!rez || manual)
+            el.med = galutinisMed(el.paz, el.egz);
     }
 
     std::sort(studentai.begin(), studentai.end(), [](data &a, data &b)
               { return a.vardas < b.vardas; });
 
     fout << std::left << std::setw(20) << "Vardas" << std::left << std::setw(20) << "Pavarde";
-    if (rez)
-        fout << "Galutinis (Vid.)" << endl;
-    else
-        fout << "Galutinis (Med.)" << endl;
+    if (rez || manual)
+        fout << std::left << std::setw(20) << "Galutinis (Vid.)";
+    if (!rez || manual)
+        fout << std::left << std::setw(20) << "Galutinis (Med.)";
+    fout << endl;
     fout << "-------------------------------------------------------------------------------------------------------------------" << endl;
     for (auto &el : studentai)
         isvedimas(el, fout);
@@ -132,7 +135,12 @@ void ivestis(data &temp)
 void isvedimas(data &temp, std::ofstream &fout)
 {
     fout << std::left << std::setw(20) << temp.vardas << std::left << std::setw(20) << temp.pavarde;
-    fout << std::setprecision(2) << temp.rez << endl;
+    if (manual)
+        fout << std::left << std::setw(20) << std::setprecision(2) << temp.vid << std::left << std::setw(20) << std::setprecision(2) << temp.med << endl;
+    else if (rez)
+        fout << std::left << std::setw(20) << std::setprecision(2) << temp.vid << endl;
+    else if (!rez)
+        fout << std::left << std::setw(20) << std::setprecision(2) << temp.med << endl;
 }
 double galutinisVid(vector<int> paz, int egz)
 {
