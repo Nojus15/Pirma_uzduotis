@@ -4,6 +4,7 @@
 #include <random>
 #include <vector>
 #include <algorithm>
+#include <functional>
 
 using std::cin;
 using std::cout;
@@ -21,14 +22,15 @@ struct data
 
 void ivestis(data &temp);
 void isvedimas(data &temp, std::ofstream &fout);
-double galutinisVid(vector<int> paz);
-double galutinisMed(vector<int> paz);
+double galutinisVid(vector<int> paz, int egz);
+double galutinisMed(vector<int> paz, int egz);
 int enterValidInt();
 bool checkMark(int n);
 void generateRandomMark(data &temp);
 void enterMarkManually(data &temp);
 bool modeCheck();
 int generateRandomInt();
+void read(std::ifstream &fin, std::vector<string> &length, std::vector<data> &studentai);
 
 bool egz;
 bool paz;
@@ -52,26 +54,7 @@ int main()
     if (!manual)
     {
         std::ifstream fin("studentai.txt");
-        string t;
-        while ((fin.peek() != '\n') && (fin >> t))
-            length.push_back(t);
-        length.resize(length.size() - 3);
-        cout << length.size() << endl;
-
-        while (!fin.eof())
-        {
-            int p;
-            data t;
-            fin >> t.vardas >> t.pavarde;
-            for (auto &el : length)
-            {
-                fin >> p;
-                t.paz.push_back(p);
-            }
-            fin >> t.egz;
-            studentai.push_back(t);
-        }
-        cout << studentai.size() << endl;
+        read(fin, length, studentai);
     }
     else
     {
@@ -94,13 +77,18 @@ int main()
             }
         }
     }
+
     for (auto &el : studentai)
     {
-        if (rez == 1)
-            el.rez = galutinisVid(el.paz);
+        if (rez)
+            el.rez = galutinisVid(el.paz, el.egz);
         else
-            el.rez = galutinisMed(el.paz);
+            el.rez = galutinisMed(el.paz, el.egz);
     }
+
+    std::sort(studentai.begin(), studentai.end(), [](data &a, data &b)
+              { return a.vardas < b.vardas; });
+
     fout << std::left << std::setw(20) << "Vardas" << std::left << std::setw(20) << "Pavarde";
     if (rez)
         fout << "Galutinis (Vid.)" << endl;
@@ -144,19 +132,19 @@ void ivestis(data &temp)
 void isvedimas(data &temp, std::ofstream &fout)
 {
     fout << std::left << std::setw(20) << temp.vardas << std::left << std::setw(20) << temp.pavarde;
-    fout << std::setprecision(2) << temp.rez * 0.4 + temp.egz * 0.6 << endl;
+    fout << std::setprecision(2) << temp.rez << endl;
 }
-double galutinisVid(vector<int> paz)
+double galutinisVid(vector<int> paz, int egz)
 {
-    int sum = 0;
-    for (int i = 0; i < paz.size(); i++)
+    double sum = 0;
+    for (auto &el : paz)
     {
-        sum += paz[i];
+        sum += el;
     }
 
-    return sum / (paz.size() * 1.0);
+    return sum / (paz.size() * 1.0) * 0.4 + egz * 0.6;
 }
-double galutinisMed(vector<int> paz)
+double galutinisMed(vector<int> paz, int egz)
 {
     sort(paz.begin(), paz.end());
     if (paz.size() % 2 == 0)
@@ -165,7 +153,7 @@ double galutinisMed(vector<int> paz)
     }
     else
     {
-        return paz[paz.size() / 2];
+        return paz[paz.size() / 2] * 0.4 + egz * 0.6;
     }
 }
 int enterValidInt()
@@ -235,5 +223,26 @@ bool modeCheck()
             return mode;
         else
             cout << "Blogas skaicius" << endl;
+    }
+}
+void read(std::ifstream &fin, std::vector<string> &length, std::vector<data> &studentai)
+{
+    string t;
+    while ((fin.peek() != '\n') && (fin >> t))
+        length.push_back(t);
+    length.resize(length.size() - 3);
+
+    while (!fin.eof())
+    {
+        int p;
+        data t;
+        fin >> t.vardas >> t.pavarde;
+        for (auto &el : length)
+        {
+            fin >> p;
+            t.paz.push_back(p);
+        }
+        fin >> t.egz;
+        studentai.push_back(t);
     }
 }
