@@ -14,8 +14,6 @@ int main()
 
     cout << "Jei norite rasyti pats spauskite 1, jei skaityti is failo spauskite 0" << endl;
     manual = !modeCheck();
-    cout << "Jei norite skaiciuoti vidurki spauskite 1, jei mediana spauskite 0" << endl;
-    rez = modeCheck();
 
     vector<string> length;
 
@@ -25,11 +23,20 @@ int main()
 
     if (manual)
     {
-        std::ifstream fin("studentai.txt");
-        read(fin, length, studentai);
+        try
+        {
+            std::ifstream fin("studentai.txt");
+            read(fin, length, studentai);
+        }
+        catch (const std::exception &e)
+        {
+            cout << e.what() << endl;
+        }
     }
     else
     {
+        cout << "Jei norite skaiciuoti vidurki spauskite 1, jei mediana spauskite 0" << endl;
+        rez = modeCheck();
         cout << "Jei norite egzamino rezultata ivesti ranka spauskite 1, jei generuoti automatiskai spauskite 0" << endl;
         egz = modeCheck();
         cout << "Jei norite pazymius ivesti ranka spauskite 1, jei generuoti automatiskai spauskite 0" << endl;
