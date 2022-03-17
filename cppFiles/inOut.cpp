@@ -34,11 +34,17 @@ void isvedimas(data &temp, std::ofstream &fout)
 {
     fout << std::left << std::setw(20) << temp.vardas << std::left << std::setw(20) << temp.pavarde;
     if (manual)
-        fout << std::left << std::setw(20) << std::setprecision(2) << temp.vid << std::left << std::setw(20) << std::setprecision(2) << temp.med << endl;
+        fout << std::left << std::setw(20) << std::setprecision(2) << temp.vid << std::left << std::setw(20) << std::setprecision(2) << temp.med;
     else if (rez)
-        fout << std::left << std::setw(20) << std::setprecision(2) << temp.vid << endl;
+        fout << std::left << std::setw(20) << std::setprecision(2) << temp.vid;
     else if (!rez)
-        fout << std::left << std::setw(20) << std::setprecision(2) << temp.med << endl;
+        fout << std::left << std::setw(20) << std::setprecision(2) << temp.med;
+
+    fout << "   ";
+    for (auto &paz : temp.paz)
+        fout << paz << " ";
+
+    fout << endl;
 }
 void read(std::ifstream &fin, std::vector<string> &length, std::vector<data> &studentai)
 {
