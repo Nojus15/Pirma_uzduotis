@@ -1,11 +1,1 @@
 Vardas              Pavarde             Galutinis (Vid.)    Galutinis (Med.)    
-Eldaras             Kazlaukas           7.4                 4.5                 
-Erikas              Paulauskas          5.52                4.5                 
-Mecislovas          zukauskas           4.88                5.5                 
-Germanas            Vasiliauskas        4.32                5.5                 
-Hubertas            Baranauskas         5.16                5                   
-Jurijus             Jankauskas          3.76                7.5                 
-Zbignevas           Jankauskas          3.88                7                   
-Vaclovas            Jankauskas          5.52                4                   
-Kornelijus          Butkus              3.88                6                   
-Gintautas           Kateiva             7.96                6                   

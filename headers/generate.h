@@ -1,25 +1,6 @@
 #pragma once
 
-#include "validation.h"
-#include <iostream>
-#include <iomanip>
-#include <string>
-#include <stdlib.h>
-#include <vector>
-#include <map>
-#include <chrono>
-#include <random>
-#include <sstream>
-
-using std::cout;
-using std::endl;
-using std::left;
-using std::map;
-using std::mt19937;
-using std::right;
-using std::setw;
-using std::string;
-using std::vector;
+#include "data.h"
 
 void generateRandomMark(data &temp);
 

@@ -44,34 +44,40 @@ void enterMarkManually(data &temp)
             temp.paz.push_back(t);
     }
 }
-void bufer_read(vector<data> &studentai)
+void bufer_read(vector<data> &studentai, bool gen, string genFile_name)
 {
     std::string line;
     std::stringstream my_buffer;
 
     std::ifstream open_f;
-    bool error = true;
-    cin.ignore();
-    while (error)
+    if (!gen)
     {
-        cout << "Iveskite failo pavadinima(numatysis pavadinimas: studentai.txt): ";
-        string file_name;
-        getline(cin, file_name);
+        bool error = true;
+        cin.ignore();
+        while (error)
+        {
+            cout << "Iveskite failo pavadinima(numatysis pavadinimas: studentai.txt): ";
+            string file_name;
+            getline(cin, file_name);
 
-        if (file_name.empty())
-            file_name = "studentai.txt";
-        try
-        {
-            open_f.open(file_name);
-            if (open_f.fail())
-                throw std::invalid_argument("Klaida! Neteisingas failo pavadinimas.");
-            error = false;
-        }
-        catch (const std::invalid_argument &e)
-        {
-            cout << e.what() << std::endl;
+            if (file_name.empty())
+                file_name = "studentai.txt";
+            try
+            {
+                open_f.open(file_name);
+                if (open_f.fail())
+                    throw std::invalid_argument("Klaida! Neteisingas failo pavadinimas.");
+                error = false;
+            }
+            catch (const std::invalid_argument &e)
+            {
+                cout << e.what() << std::endl;
+            }
         }
     }
+    else
+        open_f.open(genFile_name);
+    auto readStart = hrClock::now();
     my_buffer << open_f.rdbuf();
     open_f.close();
     std::getline(my_buffer, line);
@@ -94,33 +100,57 @@ void bufer_read(vector<data> &studentai)
         t.paz.pop_back();
         studentai.push_back(t);
     }
+    cout << "Failo skaitymas uztruko: " << durationDouble(hrClock::now() - readStart).count() << endl;
 }
 
-void bufer_write(std::string write_vardas, vector<data> &studentai)
+void bufer_write(std::string write_vardas, vector<data> &studentai, bool manual, bool rez)
 {
     std::stringstream outputas;
     outputas << left << setw(20) << "Vardas";
     outputas << left << setw(20) << "Pavarde";
-    outputas << left << setw(20) << "Galutinis (Vid.)";
-    outputas << left << setw(20) << "Galutinis (Med.)";
+    if (rez || manual)
+        outputas << std::left << std::setw(20) << "Galutinis (Vid.)";
+    if (!rez || manual)
+        outputas << std::left << std::setw(20) << "Galutinis (Med.)";
     outputas << endl;
-    for (auto &stud : studentai)
+    if (!manual)
     {
-        outputas << left << setw(20) << stud.vardas;
-        outputas << left << setw(20) << stud.pavarde;
-        outputas << left << setw(20) << stud.vid;
-        outputas << left << setw(20) << stud.med;
-        outputas << endl;
+        for (auto &stud : studentai)
+        {
+            outputas << left << setw(20) << stud.vardas;
+            outputas << left << setw(20) << stud.pavarde;
+            outputas << left << setw(20) << stud.vid;
+            outputas << left << setw(20) << stud.med;
+            outputas << endl;
+        }
+    }
+    else if (rez)
+    {
+        for (auto &stud : studentai)
+        {
+            outputas << left << setw(20) << stud.vardas;
+            outputas << left << setw(20) << stud.pavarde;
+            outputas << left << setw(20) << stud.vid;
+            outputas << endl;
+        }
+    }
+    else if (!rez)
+    {
+        for (auto &stud : studentai)
+        {
+            outputas << left << setw(20) << stud.vardas;
+            outputas << left << setw(20) << stud.pavarde;
+            outputas << left << setw(20) << stud.med;
+            outputas << endl;
+        }
     }
     studentai.clear();
 
-    std::ofstream out_f(write_vardas);
-    out_f << outputas.rdbuf();
-    out_f.close();
+    ssToFile(write_vardas, outputas);
 }
 void genFile(int size, string file_name, int ndCount)
 {
-
+    auto genStart = hrClock::now();
     std::stringstream outputas;
     outputas << left << setw(20) << "Vardas";
     outputas << left << setw(20) << "Pavarde";
@@ -135,5 +165,12 @@ void genFile(int size, string file_name, int ndCount)
     }
     std::ofstream out_f(file_name);
     out_f << outputas.rdbuf();
+    out_f.close();
+    cout << size << " irasu failo generavimo laikas: " << durationDouble(hrClock::now() - genStart).count() << endl;
+}
+void ssToFile(string file_name, std::stringstream &data)
+{
+    std::ofstream out_f(file_name);
+    out_f << data.rdbuf();
     out_f.close();
 }
