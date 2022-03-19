@@ -9,6 +9,7 @@
 #include <map>
 #include <chrono>
 #include <random>
+#include <sstream>
 
 using std::cout;
 using std::endl;
@@ -21,9 +22,8 @@ using std::string;
 using std::vector;
 
 void generateRandomMark(data &temp);
-int generateRandomInt();
 
-data genStudent();
+std::stringstream genStudentString(int ndCount);
 int randomInt(int from, int to);
 string randFirstName();
 string randLastName();

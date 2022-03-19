@@ -21,7 +21,7 @@ void ivestis(data &temp)
         }
     }
     else
-        temp.egz = generateRandomInt();
+        temp.egz = randomInt(1, 10);
 
     ////////// pazymiu vedimas ///////////
     if (paz)
@@ -29,43 +29,6 @@ void ivestis(data &temp)
     else
         generateRandomMark(temp);
     cout << "pazymiai suvesti" << endl;
-}
-void isvedimas(data &temp, std::ofstream &fout)
-{
-    fout << std::left << std::setw(20) << temp.vardas << std::left << std::setw(20) << temp.pavarde;
-    if (manual)
-        fout << std::left << std::setw(20) << std::setprecision(2) << temp.vid << std::left << std::setw(20) << std::setprecision(2) << temp.med;
-    else if (rez)
-        fout << std::left << std::setw(20) << std::setprecision(2) << temp.vid;
-    else if (!rez)
-        fout << std::left << std::setw(20) << std::setprecision(2) << temp.med;
-
-    fout << "   ";
-    for (auto &paz : temp.paz)
-        fout << paz << " ";
-
-    fout << endl;
-}
-void read(std::ifstream &fin, std::vector<string> &length, std::vector<data> &studentai)
-{
-    string t;
-    while ((fin.peek() != '\n') && (fin >> t))
-        length.push_back(t);
-    length.resize(length.size() - 3);
-
-    while (!fin.eof())
-    {
-        int p;
-        data t;
-        fin >> t.vardas >> t.pavarde;
-        for (auto &el : length)
-        {
-            fin >> p;
-            t.paz.push_back(p);
-        }
-        fin >> t.egz;
-        studentai.push_back(t);
-    }
 }
 void enterMarkManually(data &temp)
 {
@@ -80,4 +43,97 @@ void enterMarkManually(data &temp)
         else if (checkMark(t))
             temp.paz.push_back(t);
     }
+}
+void bufer_read(vector<data> &studentai)
+{
+    std::string line;
+    std::stringstream my_buffer;
+
+    std::ifstream open_f;
+    bool error = true;
+    cin.ignore();
+    while (error)
+    {
+        cout << "Iveskite failo pavadinima(numatysis pavadinimas: studentai.txt): ";
+        string file_name;
+        getline(cin, file_name);
+
+        if (file_name.empty())
+            file_name = "studentai.txt";
+        try
+        {
+            open_f.open(file_name);
+            if (open_f.fail())
+                throw std::invalid_argument("Klaida! Neteisingas failo pavadinimas.");
+            error = false;
+        }
+        catch (const std::invalid_argument &e)
+        {
+            cout << e.what() << std::endl;
+        }
+    }
+    my_buffer << open_f.rdbuf();
+    open_f.close();
+    std::getline(my_buffer, line);
+
+    int counter = 0;
+    while (my_buffer)
+    {
+        std::getline(my_buffer, line);
+        if (line.length() == 0)
+            break;
+        data t;
+        std::istringstream lineStream(line);
+        lineStream >> t.vardas >> t.pavarde;
+        int mark;
+        while (lineStream >> mark)
+        {
+            t.paz.push_back(mark);
+        }
+        t.egz = t.paz.back();
+        t.paz.pop_back();
+        studentai.push_back(t);
+    }
+}
+
+void bufer_write(std::string write_vardas, vector<data> &studentai)
+{
+    std::stringstream outputas;
+    outputas << left << setw(20) << "Vardas";
+    outputas << left << setw(20) << "Pavarde";
+    outputas << left << setw(20) << "Galutinis (Vid.)";
+    outputas << left << setw(20) << "Galutinis (Med.)";
+    outputas << endl;
+    for (auto &stud : studentai)
+    {
+        outputas << left << setw(20) << stud.vardas;
+        outputas << left << setw(20) << stud.pavarde;
+        outputas << left << setw(20) << stud.vid;
+        outputas << left << setw(20) << stud.med;
+        outputas << endl;
+    }
+    studentai.clear();
+
+    std::ofstream out_f(write_vardas);
+    out_f << outputas.rdbuf();
+    out_f.close();
+}
+void genFile(int size, string file_name, int ndCount)
+{
+
+    std::stringstream outputas;
+    outputas << left << setw(20) << "Vardas";
+    outputas << left << setw(20) << "Pavarde";
+    for (int i = 1; i <= ndCount; i++)
+    {
+        outputas << left << "ND" << setw(5) << i;
+    }
+    outputas << left << setw(7) << "Egz" << endl;
+    for (int i = 0; i < size; i++)
+    {
+        outputas << genStudentString(ndCount).str();
+    }
+    std::ofstream out_f(file_name);
+    out_f << outputas.rdbuf();
+    out_f.close();
 }

@@ -11,34 +11,35 @@ bool manual;
 
 int main()
 {
-    // srand(time(0));
-
-    vector<string> length;
-
     vector<data> studentai;
 
-    for (int i = 0; i < 100; i++)
+    cout << "Ar norite generuoti faila? Jei taip, iveskite 1, jei ne - 0" << endl;
+    bool gen = modeCheck();
+    if (gen)
     {
-        studentai.push_back(genStudent());
+        cin.ignore();
+        string file_name;
+        cout << "Koks turetu buti failo pavadinimas?(studentai.txt by default): ";
+        getline(cin, file_name);
+        file_name.empty() ? file_name = "studentai.txt" : file_name += ".txt";
+        cout << file_name << endl;
+        cout << "Kiek generuoti studentų?" << endl;
+        int studCount;
+        studCount = enterValidInt();
+        cout << "Kiek generuoti namu darbu?" << endl;
+        int ndCount;
+        ndCount = enterValidInt();
+        genFile(studCount, file_name, ndCount);
+        return 0;
     }
-    cout << endl;
+
     cout << "Jei norite rasyti pats spauskite 1, jei skaityti is failo spauskite 0" << endl;
     manual = !modeCheck();
 
-    std::ofstream fout("rez.txt");
-
-    // if (manual)
-    // {
-    //     try
-    //     {
-    //         std::ifstream fin("studentai.txt");
-    //         read(fin, length, studentai);
-    //     }
-    //     catch (const std::exception &e)
-    //     {
-    //         cout << e.what() << endl;
-    //     }
-    // }
+    if (manual)
+    {
+        bufer_read(studentai);
+    }
     // else
     // {
     //     cout << "Jei norite skaiciuoti vidurki spauskite 1, jei mediana spauskite 0" << endl;
@@ -71,16 +72,18 @@ int main()
             el.med = galutinisMed(el.paz, el.egz);
     }
 
-    std::sort(studentai.begin(), studentai.end(), [](data &a, data &b)
-              { return a.vardas < b.vardas; });
+    // std::sort(studentai.begin(), studentai.end(), [](data &a, data &b)
+    //           { return a.vardas < b.vardas; });
 
-    fout << std::left << std::setw(20) << "Vardas" << std::left << std::setw(20) << "Pavarde";
-    if (rez || manual)
-        fout << std::left << std::setw(20) << "Galutinis (Vid.)";
-    if (!rez || manual)
-        fout << std::left << std::setw(20) << "Galutinis (Med.)";
-    fout << endl;
-    fout << "-------------------------------------------------------------------------------------------------------------------" << endl;
-    for (auto &el : studentai)
-        isvedimas(el, fout);
+    // fout << std::left << std::setw(20) << "Vardas" << std::left << std::setw(20) << "Pavarde";
+    // if (rez || manual)
+    //     fout << std::left << std::setw(20) << "Galutinis (Vid.)";
+    // if (!rez || manual)
+    //     fout << std::left << std::setw(20) << "Galutinis (Med.)";
+    // fout << endl;
+    // fout << "-------------------------------------------------------------------------------------------------------------------" << endl;
+    // for (auto &el : studentai)
+    //     isvedimas(el, fout);
+
+    bufer_write("rez.txt", studentai);
 }

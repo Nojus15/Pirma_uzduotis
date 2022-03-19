@@ -19,8 +19,8 @@ struct data
     string vardas, pavarde;
     vector<int> paz;
     int egz;
-    double vid;
-    double med;
+    double vid = 0;
+    double med = 0;
 };
 
 extern bool egz;

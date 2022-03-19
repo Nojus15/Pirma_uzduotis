@@ -1,102 +1,11 @@
 Vardas              Pavarde             Galutinis (Vid.)    Galutinis (Med.)    
--------------------------------------------------------------------------------------------------------------------
-Adas                Stankevicius        3.1                 5                      6 6 8 6 2 4 4 1 9 1 
-Adolis              Butkus              4.4                 6.5                    9 3 6 10 7 1 10 6 
-Akimas              Petrauskas          4.2                 4.2                    6 8 4 6 6 
-Alius               Pocius              2.6                 2.4                    2 2 5 5 3 
-Alvidas             Urbonas             6.3                 7                      6 10 10 8 4 3 
-Anatolis            Stankevicius        6.6                 5.5                    3 1 10 10 3 5 10 9 4 6 
-Andriejus           Pocius              8.1                 8.2                    5 10 5 10 1 9 7 
-Arnas               zukauskas           7.7                 2.5                    3 1 6 2 8 2 1 10 
-Artiomas            Paulauskas          4.3                 4.2                    10 8 2 5 6 
-Augustas            Jankauskas          6.6                 7                      7 10 8 3 6 7 3 2 7 
-Aurelijus           Butkus              4.9                 4.8                    8 4 5 8 10 3 6 
-Ausrius             Urbonas             7.8                 4.5                    4 8 5 3 6 1 
-Bernardas           Petrauskas          6.7                 5.5                    8 1 6 7 8 1 5 2 
-Bronius             Stankevicius        4.8                 4.4                    5 7 8 4 4 10 7 3 5 
-Dangerutis          Baranauskas         3.9                 3                      1 6 9 3 1 3 
-Darius              Kazlaukas           8.7                 6                      10 5 4 5 10 7 
-Dimitrijus          zukauskas           4.9                 4.8                    7 4 6 9 2 6 10 9 4 
-Donatas             Kazlaukas           7                   5                      4 8 1 6 9 4 3 10 
-Dovis               Pocius              6.5                 6.6                    3 3 8 9 6 
-Dziraldas           zukauskas           7.5                 6                      1 7 1 5 9 8 
-Edmundas            Urbonas             4.7                 5                      9 3 2 10 4 6 2 9 
-Edvardas            Butkus              3                   3.2                    2 9 1 5 1 7 6 6 4 
-Egidijus            Urbonas             3.4                 3                      3 7 3 1 6 
-Emilijus            Paulauskas          5.8                 4.5                    8 5 10 4 1 3 4 10 
-Enrikas             Stankevicius        7.5                 5.5                    2 4 9 7 3 7 3 8 
-Fedoras             Stankevicius        2.9                 4                      5 4 9 4 1 2 
-Fiodoras            Petrauskas          7.5                 5                      8 5 4 6 4 5 
-Gaudenis            zukauskas           5.5                 3                      1 1 2 1 6 6 4 4 
-Gedvaldas           Kavaliauskas        3.3                 2                      10 2 5 2 2 6 1 1 8 1 
-Giedrius            Petrauskas          7.4                 7.4                    6 4 7 10 1 1 2 8 5 
-Gintas              Jankauskas          8.3                 6.5                    8 4 6 7 7 2 
-Gracijonas          Paulauskas          2.3                 4                      5 4 4 2 6 1 8 2 9 1 
-Gracijus            Baranauskas         6.7                 3                      1 10 3 8 3 2 8 2 
-Grigalius           Urbonas             7.4                 7.6                    5 10 7 9 2 
-Grigas              Kavaliauskas        6.1                 6.2                    5 9 9 8 5 1 4 1 1 
-Gustas              Baranauskas         5.4                 6                      5 3 8 6 6 4 10 6 
-Ignacas             Petrauskas          3.4                 7                      5 8 5 7 7 10 
-Ingvaras            zukauskas           8.7                 7                      8 6 4 10 3 10 
-Isakas              Kavaliauskas        7.2                 6.6                    3 3 1 7 9 
-Joanas              zukauskas           4.6                 4.8                    2 6 3 3 9 8 5 6 8 
-Joanas              Kavaliauskas        4.2                 6.5                    7 6 10 9 6 9 2 1 7 3 
-Jolantas            Stankevicius        5.4                 5                      4 9 9 8 3 6 9 4 4 4 
-Jonaras             Stankevicius        5.9                 5.6                    6 5 10 7 3 4 5 
-Juras               Urbonas             3.9                 5                      6 3 10 1 4 3 7 8 
-Juras               Kavaliauskas        4.1                 4.8                    10 4 6 10 10 1 9 
-Justinas            Baranauskas         8.2                 8.4                    6 5 3 8 9 9 2 1 6 
-Kamilis             Urbonas             3.7                 3.6                    2 9 6 9 5 
-Kasparas            Paulauskas          3.5                 3.6                    1 4 1 10 5 8 6 8 9 
-Kasparas            Kavaliauskas        5.2                 5                      5 7 5 4 1 9 8 
-Kastantas           Vasiliauskas        5                   4.8                    3 9 1 3 2 1 6 
-Klaudijus           Petrauskas          3.6                 3.6                    7 9 4 3 9 5 6 1 10 
-Kovas               Paulauskas          8.1                 8.2                    5 6 8 9 5 7 5 7 8 
-Kristoforas         Baranauskas         8.2                 7.5                    9 8 9 7 2 7 
-Ksistofas           zukauskas           3.2                 2.6                    10 9 3 9 5 4 5 
-Libertas            Kazlaukas           4.2                 5.5                    5 6 6 6 1 3 9 1 
-Maksas              Kavaliauskas        8.7                 7.5                    2 6 10 9 6 10 9 2 
-Maksimas            Petrauskas          4.2                 6                      4 5 8 6 9 2 6 3 6 10 
-Melanijus           Paulauskas          2.9                 7                      6 1 3 8 9 9 1 9 
-Mendelis            Baranauskas         6.7                 6.2                    8 5 4 10 10 4 2 
-Miglius             Kateiva             3.7                 4.4                    8 9 2 9 2 9 5 
-Mildas              Vasiliauskas        7.3                 7                      3 8 9 8 4 4 9 6 
-Moze                Stankevicius        7.2                 7.2                    10 2 5 6 7 
-Napoleonas          Stankevicius        4                   5                      5 6 2 5 5 5 8 6 3 9 
-Napolis             Kavaliauskas        3.3                 7                      7 1 3 7 7 7 2 9 
-Narimantas          Kateiva             4.3                 7                      7 9 3 2 8 10 1 10 7 5 
-Naumas              Kazlaukas           4.4                 4.4                    6 5 5 6 3 7 5 5 2 
-Neimantas           Sakalauskas         3.2                 7                      5 3 10 2 10 9 
-Nerijus             Baranauskas         6.2                 5                      3 8 6 5 2 2 10 6 5 4 
-Nikolajus           Baranauskas         6.5                 6.6                    1 6 8 4 10 
-Pijus               Butkus              2.8                 4.5                    6 10 3 3 9 2 
-Raimondas           Stankevicius        3                   3                      9 1 3 3 2 2 3 8 9 4 
-Regimantas          Kavaliauskas        3.3                 3.2                    4 10 5 5 2 
-Regimantas          Butkus              3.5                 3.2                    2 5 3 2 2 
-Remas               Stankevicius        6.4                 6.2                    5 2 7 8 5 5 6 
-Rimantas            Jankauskas          4.3                 6.5                    6 3 7 8 6 7 
-Rimgaudas           Pocius              8.2                 7.6                    4 3 10 8 3 
-Rodrigas            Kateiva             7.4                 7                      3 7 9 4 2 
-Rostislavas         Kavaliauskas        5.8                 5.2                    4 3 5 10 3 10 3 
-Samsonas            Kazlaukas           3.3                 3                      3 3 4 7 1 9 1 2 3 5 
-Samuelis            Petrauskas          7                   4.5                    5 8 4 8 9 4 3 1 8 4 
-Samuilas            Jankauskas          4.2                 6                      9 9 6 6 5 2 3 8 
-Saulius             Petrauskas          3.2                 6.5                    7 3 10 6 3 10 9 3 
-Serapinas           Butkus              7.3                 7                      2 5 1 4 4 10 7 
-Svajus              Kateiva             3.1                 3.6                    1 7 2 7 6 2 3 6 9 
-Teisius             Stankevicius        3                   4.5                    5 2 7 4 7 1 2 9 
-Tomasas             Baranauskas         3.1                 6                      3 4 9 9 5 6 7 6 
-Ugnius              Kateiva             5.2                 5                      2 10 4 7 5 
-Vaclovas            Petrauskas          3.3                 6                      7 6 9 2 6 1 
-Vaidevutis          Kateiva             5.2                 4.6                    4 10 4 8 4 2 7 
-Valius              Stankevicius        7.6                 3                      1 3 10 4 1 8 7 1 3 2 
-Vasaris             Butkus              4.3                 4.4                    10 2 6 5 6 2 2 9 1 
-Virgilijus          Kavaliauskas        7.2                 2.5                    8 1 3 10 10 2 6 2 2 2 
-Vismantas           Kateiva             6.4                 6                      8 6 2 6 5 3 6 8 5 6 
-Vykintas            Kateiva             4.8                 4.8                    9 5 9 6 7 3 3 
-Vytaras             Sakalauskas         9.1                 8.8                    6 5 6 7 10 10 10 
-Vytas               Kazlaukas           4.2                 4.4                    5 6 1 6 5 
-Zbignevas           Kavaliauskas        3.8                 3.8                    5 3 7 5 3 8 6 3 4 
-Zigmantas           Butkus              4                   4                      1 5 4 10 2 4 2 6 2 
-Zigmas              Paulauskas          6.9                 6.6                    3 1 8 6 1 
-zymantas            Pocius              7.9                 8                      6 7 10 10 4 9 
+Eldaras             Kazlaukas           7.4                 4.5                 
+Erikas              Paulauskas          5.52                4.5                 
+Mecislovas          zukauskas           4.88                5.5                 
+Germanas            Vasiliauskas        4.32                5.5                 
+Hubertas            Baranauskas         5.16                5                   
+Jurijus             Jankauskas          3.76                7.5                 
+Zbignevas           Jankauskas          3.88                7                   
+Vaclovas            Jankauskas          5.52                4                   
+Kornelijus          Butkus              3.88                6                   
+Gintautas           Kateiva             7.96                6                   
