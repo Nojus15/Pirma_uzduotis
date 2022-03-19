@@ -108,9 +108,9 @@ void bufer_write(std::string write_vardas, vector<data> &studentai, bool manual,
     std::stringstream outputas;
     outputas << left << setw(20) << "Vardas";
     outputas << left << setw(20) << "Pavarde";
-    if (rez || manual)
+    if (rez || !manual)
         outputas << std::left << std::setw(20) << "Galutinis (Vid.)";
-    if (!rez || manual)
+    if (!rez || !manual)
         outputas << std::left << std::setw(20) << "Galutinis (Med.)";
     outputas << endl;
     if (!manual)

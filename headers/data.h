@@ -10,19 +10,17 @@
 #include <chrono>
 #include <string>
 #include <stdlib.h>
-
-#include "validation.h"
+#include <stdio.h>
 
 using std::cin;
 using std::cout;
 using std::endl;
-using std::string;
-using std::vector;
-
 using std::left;
 using std::mt19937;
 using std::right;
 using std::setw;
+using std::string;
+using std::vector;
 
 using hrClock = std::chrono::high_resolution_clock;
 using durationDouble = std::chrono::duration<double>;

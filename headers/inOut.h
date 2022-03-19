@@ -1,9 +1,4 @@
 #pragma once
-#include <stdio.h>
-#include <stdlib.h>
-#include <fstream>
-#include <sstream>
-#include <vector>
 
 #include "data.h"
 #include "generate.h"

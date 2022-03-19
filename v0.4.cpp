@@ -23,7 +23,6 @@ int main()
         cout << "Koks turetu buti failo pavadinimas?(studentai.txt by default): ";
         getline(cin, genFile_name);
         genFile_name.empty() ? genFile_name = "studentai.txt" : genFile_name += ".txt";
-        cout << genFile_name << endl;
         cout << "Kiek generuoti studentų?" << endl;
         int studCount;
         studCount = enterValidInt();
