@@ -23,12 +23,15 @@ int main()
         cout << "Koks turetu buti failo pavadinimas?(studentai.txt by default): ";
         getline(cin, genFile_name);
         genFile_name.empty() ? genFile_name = "studentai.txt" : genFile_name += ".txt";
-        cout << "Kiek generuoti studentų?" << endl;
+        cout << "Kiek generuoti studentu?" << endl;
         int studCount;
         studCount = enterValidInt();
+        studentai.reserve(studCount);
         cout << "Kiek generuoti namu darbu?" << endl;
         int ndCount;
         ndCount = enterValidInt();
+        cout << "-------------------------" << endl;
+        cout << studCount << " irasu testavimas" << endl;
         genFile(studCount, genFile_name, ndCount);
         manual = false;
     }
@@ -82,4 +85,5 @@ int main()
         bufer_write("rez.txt", studentai, manual, rez);
     }
     cout << "Visos programos veikimo laikas: " << durationDouble(hrClock::now() - programStart).count() << endl;
+    cout << "-------------------------" << endl;
 }

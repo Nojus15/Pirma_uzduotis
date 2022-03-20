@@ -166,7 +166,7 @@ void genFile(int size, string file_name, int ndCount)
     std::ofstream out_f(file_name);
     out_f << outputas.rdbuf();
     out_f.close();
-    cout << size << " irasu failo generavimo laikas: " << durationDouble(hrClock::now() - genStart).count() << endl;
+    cout << "Failo generavimo laikas: " << durationDouble(hrClock::now() - genStart).count() << endl;
 }
 void ssToFile(string file_name, std::stringstream &data)
 {
