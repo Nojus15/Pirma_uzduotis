@@ -49,7 +49,7 @@ void sortStudents(std::stringstream &kietiakai, std::stringstream &vargsai, vect
         }
     }
     studentai.clear();
-    cout << "Studentu dalinimo i dvi grupes laikas: " << durationDouble(hrClock::now() - sortStart).count() << endl;
+    cout << "Studentu dalinimo i dvi grupes laikas: " << durationDouble(hrClock::now() - sortStart).count() << " s" << endl;
 }
 void calcRez(vector<data> &studentai, bool rez, bool manual)
 {

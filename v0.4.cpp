@@ -53,7 +53,7 @@ int main()
         auto newWrite = hrClock::now();
         ssToFile("kietiakai.txt", kietiakai);
         ssToFile("vargsai.txt", vargsai);
-        cout << "Surusiuotu studentu isvedimas i naujus failus uztruko: " << durationDouble(hrClock::now() - newWrite).count() << endl;
+        cout << "Surusiuotu studentu isvedimas i naujus failus uztruko: " << durationDouble(hrClock::now() - newWrite).count() << " s" << endl;
     }
     else
     {
@@ -84,6 +84,6 @@ int main()
 
         bufer_write("rez.txt", studentai, manual, rez);
     }
-    cout << "Visos programos veikimo laikas: " << durationDouble(hrClock::now() - programStart).count() << endl;
+    cout << "Visos programos veikimo laikas: " << durationDouble(hrClock::now() - programStart).count() << " s" << endl;
     cout << "-------------------------" << endl;
 }

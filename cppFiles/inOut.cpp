@@ -100,7 +100,7 @@ void bufer_read(vector<data> &studentai, bool gen, string genFile_name)
         t.paz.pop_back();
         studentai.push_back(t);
     }
-    cout << "Failo skaitymas uztruko: " << durationDouble(hrClock::now() - readStart).count() << endl;
+    cout << "Failo skaitymas uztruko: " << durationDouble(hrClock::now() - readStart).count() << " s" << endl;
 }
 
 void bufer_write(std::string write_vardas, vector<data> &studentai, bool manual, bool rez)
@@ -166,7 +166,7 @@ void genFile(int size, string file_name, int ndCount)
     std::ofstream out_f(file_name);
     out_f << outputas.rdbuf();
     out_f.close();
-    cout << "Failo generavimo laikas: " << durationDouble(hrClock::now() - genStart).count() << endl;
+    cout << "Failo generavimo laikas: " << durationDouble(hrClock::now() - genStart).count() << " s" << endl;
 }
 void ssToFile(string file_name, std::stringstream &data)
 {
