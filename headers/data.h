@@ -11,11 +11,15 @@
 #include <string>
 #include <stdlib.h>
 #include <stdio.h>
+#include <list>
+#include <deque>
 
 using std::cin;
 using std::cout;
+using std::deque;
 using std::endl;
 using std::left;
+using std::list;
 using std::mt19937;
 using std::right;
 using std::setw;

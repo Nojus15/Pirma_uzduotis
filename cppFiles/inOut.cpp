@@ -56,12 +56,128 @@ void bufer_read(vector<data> &studentai, bool gen, string genFile_name)
         cin.ignore();
         while (error)
         {
-            cout << "Iveskite failo pavadinima(numatysis pavadinimas: studentai.txt): ";
+            cout << "Iveskite failo pavadinima(numatysis pavadinimas: studentai1000000.txt): ";
             string file_name;
             getline(cin, file_name);
 
             if (file_name.empty())
-                file_name = "studentai.txt";
+                file_name = "studentai1000000.txt";
+            try
+            {
+                open_f.open(file_name);
+                if (open_f.fail())
+                    throw std::invalid_argument("Klaida! Neteisingas failo pavadinimas.");
+                error = false;
+            }
+            catch (const std::invalid_argument &e)
+            {
+                cout << e.what() << std::endl;
+            }
+        }
+    }
+    else
+        open_f.open(genFile_name);
+    auto readStart = hrClock::now();
+    my_buffer << open_f.rdbuf();
+    open_f.close();
+    std::getline(my_buffer, line);
+
+    int counter = 0;
+    while (my_buffer)
+    {
+        std::getline(my_buffer, line);
+        if (line.length() == 0)
+            break;
+        data t;
+        std::istringstream lineStream(line);
+        lineStream >> t.vardas >> t.pavarde;
+        int mark;
+        while (lineStream >> mark)
+        {
+            t.paz.push_back(mark);
+        }
+        t.egz = t.paz.back();
+        t.paz.pop_back();
+        studentai.push_back(t);
+    }
+    cout << "Failo skaitymas uztruko: " << durationDouble(hrClock::now() - readStart).count() << " s" << endl;
+}
+void bufer_read(list<data> &studentai, bool gen, string genFile_name)
+{
+    std::string line;
+    std::stringstream my_buffer;
+
+    std::ifstream open_f;
+    if (!gen)
+    {
+        bool error = true;
+        cin.ignore();
+        while (error)
+        {
+            cout << "Iveskite failo pavadinima(numatysis pavadinimas: studentai1000000.txt): ";
+            string file_name;
+            getline(cin, file_name);
+
+            if (file_name.empty())
+                file_name = "studentai1000000.txt";
+            try
+            {
+                open_f.open(file_name);
+                if (open_f.fail())
+                    throw std::invalid_argument("Klaida! Neteisingas failo pavadinimas.");
+                error = false;
+            }
+            catch (const std::invalid_argument &e)
+            {
+                cout << e.what() << std::endl;
+            }
+        }
+    }
+    else
+        open_f.open(genFile_name);
+    auto readStart = hrClock::now();
+    my_buffer << open_f.rdbuf();
+    open_f.close();
+    std::getline(my_buffer, line);
+
+    int counter = 0;
+    while (my_buffer)
+    {
+        std::getline(my_buffer, line);
+        if (line.length() == 0)
+            break;
+        data t;
+        std::istringstream lineStream(line);
+        lineStream >> t.vardas >> t.pavarde;
+        int mark;
+        while (lineStream >> mark)
+        {
+            t.paz.push_back(mark);
+        }
+        t.egz = t.paz.back();
+        t.paz.pop_back();
+        studentai.push_back(t);
+    }
+    cout << "Failo skaitymas uztruko: " << durationDouble(hrClock::now() - readStart).count() << " s" << endl;
+}
+void bufer_read(deque<data> &studentai, bool gen, string genFile_name)
+{
+    std::string line;
+    std::stringstream my_buffer;
+
+    std::ifstream open_f;
+    if (!gen)
+    {
+        bool error = true;
+        cin.ignore();
+        while (error)
+        {
+            cout << "Iveskite failo pavadinima(numatysis pavadinimas: studentai1000000.txt): ";
+            string file_name;
+            getline(cin, file_name);
+
+            if (file_name.empty())
+                file_name = "studentai1000000.txt";
             try
             {
                 open_f.open(file_name);
@@ -148,6 +264,96 @@ void bufer_write(std::string write_vardas, vector<data> &studentai, bool manual,
 
     ssToFile(write_vardas, outputas);
 }
+void bufer_write(std::string write_vardas, list<data> &studentai, bool manual, bool rez)
+{
+    std::stringstream outputas;
+    outputas << left << setw(20) << "Vardas";
+    outputas << left << setw(20) << "Pavarde";
+    if (rez || !manual)
+        outputas << std::left << std::setw(20) << "Galutinis (Vid.)";
+    if (!rez || !manual)
+        outputas << std::left << std::setw(20) << "Galutinis (Med.)";
+    outputas << endl;
+    if (!manual)
+    {
+        for (auto &stud : studentai)
+        {
+            outputas << left << setw(20) << stud.vardas;
+            outputas << left << setw(20) << stud.pavarde;
+            outputas << left << setw(20) << stud.vid;
+            outputas << left << setw(20) << stud.med;
+            outputas << endl;
+        }
+    }
+    else if (rez)
+    {
+        for (auto &stud : studentai)
+        {
+            outputas << left << setw(20) << stud.vardas;
+            outputas << left << setw(20) << stud.pavarde;
+            outputas << left << setw(20) << stud.vid;
+            outputas << endl;
+        }
+    }
+    else if (!rez)
+    {
+        for (auto &stud : studentai)
+        {
+            outputas << left << setw(20) << stud.vardas;
+            outputas << left << setw(20) << stud.pavarde;
+            outputas << left << setw(20) << stud.med;
+            outputas << endl;
+        }
+    }
+    studentai.clear();
+
+    ssToFile(write_vardas, outputas);
+}
+void bufer_write(std::string write_vardas, deque<data> &studentai, bool manual, bool rez)
+{
+    std::stringstream outputas;
+    outputas << left << setw(20) << "Vardas";
+    outputas << left << setw(20) << "Pavarde";
+    if (rez || !manual)
+        outputas << std::left << std::setw(20) << "Galutinis (Vid.)";
+    if (!rez || !manual)
+        outputas << std::left << std::setw(20) << "Galutinis (Med.)";
+    outputas << endl;
+    if (!manual)
+    {
+        for (auto &stud : studentai)
+        {
+            outputas << left << setw(20) << stud.vardas;
+            outputas << left << setw(20) << stud.pavarde;
+            outputas << left << setw(20) << stud.vid;
+            outputas << left << setw(20) << stud.med;
+            outputas << endl;
+        }
+    }
+    else if (rez)
+    {
+        for (auto &stud : studentai)
+        {
+            outputas << left << setw(20) << stud.vardas;
+            outputas << left << setw(20) << stud.pavarde;
+            outputas << left << setw(20) << stud.vid;
+            outputas << endl;
+        }
+    }
+    else if (!rez)
+    {
+        for (auto &stud : studentai)
+        {
+            outputas << left << setw(20) << stud.vardas;
+            outputas << left << setw(20) << stud.pavarde;
+            outputas << left << setw(20) << stud.med;
+            outputas << endl;
+        }
+    }
+    studentai.clear();
+
+    ssToFile(write_vardas, outputas);
+}
 void genFile(int size, string file_name, int ndCount)
 {
     auto genStart = hrClock::now();
@@ -166,7 +372,7 @@ void genFile(int size, string file_name, int ndCount)
     std::ofstream out_f(file_name);
     out_f << outputas.rdbuf();
     out_f.close();
-    cout << "Failo generavimo laikas: " << durationDouble(hrClock::now() - genStart).count() << " s" << endl;
+    cout << size << " irasu failo generavimo laikas: " << durationDouble(hrClock::now() - genStart).count() << " s" << endl;
 }
 void ssToFile(string file_name, std::stringstream &data)
 {

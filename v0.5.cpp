@@ -12,28 +12,15 @@ bool manual;
 int main()
 {
     auto programStart = hrClock::now();
-    vector<data> studentai;
-
-    cout << "Ar norite generuoti faila? Jei taip, iveskite 1, jei ne - 0" << endl;
+    cout << "Ar norite generuoti failus? Jei taip, iveskite 1, jei ne - 0" << endl;
     bool gen = modeCheck();
-    string genFile_name;
     if (gen)
     {
-        cin.ignore();
-        cout << "Koks turetu buti failo pavadinimas?(studentai.txt by default): ";
-        getline(cin, genFile_name);
-        genFile_name.empty() ? genFile_name = "studentai.txt" : genFile_name += ".txt";
-        cout << "Kiek generuoti studentu?" << endl;
-        int studCount;
-        studCount = enterValidInt();
-        studentai.reserve(studCount);
-        cout << "Kiek generuoti namu darbu?" << endl;
-        int ndCount;
-        ndCount = enterValidInt();
-        cout << "-------------------------" << endl;
-        cout << studCount << " irasu testavimas" << endl;
-        genFile(studCount, genFile_name, ndCount);
-        manual = false;
+        for (int i = 1000; i <= 10000000; i *= 10)
+        {
+            genFile(i, "studentai" + std::to_string(i) + ".txt", randomInt(10, 20));
+        }
+        return 0;
     }
     else
     {
@@ -43,13 +30,32 @@ int main()
 
     if (!manual)
     {
-        bufer_read(studentai, gen, genFile_name);
-
-        calcRez(studentai, rez, manual);
+        cout << "Pasirinkite konteinerio tipa: 1 - vector, 2 - list, 3 - deque" << endl;
+        int contType;
+        cin >> contType;
         std::stringstream kietiakai;
         std::stringstream vargsai;
-        sortStudents(kietiakai, vargsai, studentai);
-
+        if (contType == 1)
+        {
+            vector<data> studentai;
+            bufer_read(studentai, gen, "studentai1000.txt");
+            calcRez(studentai, rez, manual);
+            sortStudents(kietiakai, vargsai, studentai);
+        }
+        else if (contType == 2)
+        {
+            list<data> studentai;
+            bufer_read(studentai, gen, "studentai1000.txt");
+            calcRez(studentai, rez, manual);
+            sortStudents(kietiakai, vargsai, studentai);
+        }
+        else if (contType == 3)
+        {
+            deque<data> studentai;
+            bufer_read(studentai, gen, "studentai1000.txt");
+            calcRez(studentai, rez, manual);
+            sortStudents(kietiakai, vargsai, studentai);
+        }
         auto newWrite = hrClock::now();
         ssToFile("kietiakai.txt", kietiakai);
         ssToFile("vargsai.txt", vargsai);
@@ -57,6 +63,7 @@ int main()
     }
     else
     {
+        vector<data> studentai;
         cout << "Jei norite skaiciuoti vidurki spauskite 1, jei mediana spauskite 0" << endl;
         rez = modeCheck();
         cout << "Jei norite egzamino rezultata ivesti ranka spauskite 1, jei generuoti automatiskai spauskite 0" << endl;
@@ -78,11 +85,11 @@ int main()
             }
         }
 
-        calcRez(studentai, rez, manual);
-        std::sort(studentai.begin(), studentai.end(), [](data &a, data &b)
-                  { return a.vardas < b.vardas; });
+        // calcRez(studentai, rez, manual);
+        // std::sort(studentai.begin(), studentai.end(), [](data &a, data &b)
+        //           { return a.vardas < b.vardas; });
 
-        bufer_write("rez.txt", studentai, manual, rez);
+        // bufer_write("rez.txt", studentai, manual, rez);
     }
     cout << "Visos programos veikimo laikas: " << durationDouble(hrClock::now() - programStart).count() << " s" << endl;
     cout << "-------------------------" << endl;
