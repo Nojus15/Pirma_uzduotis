@@ -13,7 +13,7 @@ int main()
 {
     auto programStart = hrClock::now();
     cout << "Ar norite generuoti failus? Jei taip, iveskite 1, jei ne - 0" << endl;
-    bool gen = modeCheck();
+    bool gen = validMode(0, 1);
     if (gen)
     {
         for (int i = 1000; i <= 10000000; i *= 10)
@@ -25,14 +25,13 @@ int main()
     else
     {
         cout << "Jei norite rasyti pats spauskite 1, jei skaityti is failo spauskite 0" << endl;
-        manual = modeCheck();
+        manual = validMode(0, 1);
     }
 
     if (!manual)
     {
         cout << "Pasirinkite konteinerio tipa: 1 - vector, 2 - list, 3 - deque" << endl;
-        int contType;
-        cin >> contType;
+        int contType = validMode(1, 3);
         std::stringstream kietiakai;
         std::stringstream vargsai;
         if (contType == 1)
@@ -65,16 +64,16 @@ int main()
     {
         vector<data> studentai;
         cout << "Jei norite skaiciuoti vidurki spauskite 1, jei mediana spauskite 0" << endl;
-        rez = modeCheck();
+        rez = validMode(0, 1);
         cout << "Jei norite egzamino rezultata ivesti ranka spauskite 1, jei generuoti automatiskai spauskite 0" << endl;
-        egz = modeCheck();
+        egz = validMode(0, 1);
         cout << "Jei norite pazymius ivesti ranka spauskite 1, jei generuoti automatiskai spauskite 0" << endl;
-        paz = modeCheck();
+        paz = validMode(0, 1);
 
         while (true)
         {
             cout << "Jei norite ivesti studenta spauskite 1, jei norite baigti spauskite 0" << endl;
-            bool run = modeCheck();
+            bool run = validMode(0, 1);
             if (!run)
                 break;
             else

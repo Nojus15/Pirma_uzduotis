@@ -4,4 +4,4 @@
 
 int enterValidInt();
 bool checkMark(int n);
-bool modeCheck();
+int validMode(int from, int to);

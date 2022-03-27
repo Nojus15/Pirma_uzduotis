@@ -28,14 +28,14 @@ bool checkMark(int n)
         return false;
     }
 }
-bool modeCheck()
+int validMode(int from, int to)
 {
     while (true)
     {
         int mode = enterValidInt();
-        if (mode == 1 || mode == 0)
-            return mode;
-        else
-            cout << "Blogas skaicius" << endl;
+        for (int i = from; i <= to; i++)
+            if (mode == i)
+                return mode;
+        cout << "Blogas skaicius" << endl;
     }
 }

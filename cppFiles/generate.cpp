@@ -5,7 +5,7 @@ void generateRandomMark(data &temp)
     cout << "Jei norite generuoti pazymi iveskite 1, jei norite baigti iveskite 0" << endl;
     while (true)
     {
-        int run = modeCheck();
+        int run = validMode(0, 1);
         if (run)
         {
             temp.paz.push_back(randomInt(1, 10));
