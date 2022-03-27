@@ -50,33 +50,8 @@ void bufer_read(vector<data> &studentai, bool gen, string genFile_name)
     std::stringstream my_buffer;
 
     std::ifstream open_f;
-    if (!gen)
-    {
-        bool error = true;
-        cin.ignore();
-        while (error)
-        {
-            cout << "Iveskite failo pavadinima(numatysis pavadinimas: studentai1000000.txt): ";
-            string file_name;
-            getline(cin, file_name);
+    openFile(open_f);
 
-            if (file_name.empty())
-                file_name = "studentai1000000.txt";
-            try
-            {
-                open_f.open(file_name);
-                if (open_f.fail())
-                    throw std::invalid_argument("Klaida! Neteisingas failo pavadinimas.");
-                error = false;
-            }
-            catch (const std::invalid_argument &e)
-            {
-                cout << e.what() << std::endl;
-            }
-        }
-    }
-    else
-        open_f.open(genFile_name);
     auto readStart = hrClock::now();
     my_buffer << open_f.rdbuf();
     open_f.close();
@@ -108,33 +83,8 @@ void bufer_read(list<data> &studentai, bool gen, string genFile_name)
     std::stringstream my_buffer;
 
     std::ifstream open_f;
-    if (!gen)
-    {
-        bool error = true;
-        cin.ignore();
-        while (error)
-        {
-            cout << "Iveskite failo pavadinima(numatysis pavadinimas: studentai1000000.txt): ";
-            string file_name;
-            getline(cin, file_name);
+    openFile(open_f);
 
-            if (file_name.empty())
-                file_name = "studentai1000000.txt";
-            try
-            {
-                open_f.open(file_name);
-                if (open_f.fail())
-                    throw std::invalid_argument("Klaida! Neteisingas failo pavadinimas.");
-                error = false;
-            }
-            catch (const std::invalid_argument &e)
-            {
-                cout << e.what() << std::endl;
-            }
-        }
-    }
-    else
-        open_f.open(genFile_name);
     auto readStart = hrClock::now();
     my_buffer << open_f.rdbuf();
     open_f.close();
@@ -166,33 +116,8 @@ void bufer_read(deque<data> &studentai, bool gen, string genFile_name)
     std::stringstream my_buffer;
 
     std::ifstream open_f;
-    if (!gen)
-    {
-        bool error = true;
-        cin.ignore();
-        while (error)
-        {
-            cout << "Iveskite failo pavadinima(numatysis pavadinimas: studentai1000000.txt): ";
-            string file_name;
-            getline(cin, file_name);
+    openFile(open_f);
 
-            if (file_name.empty())
-                file_name = "studentai1000000.txt";
-            try
-            {
-                open_f.open(file_name);
-                if (open_f.fail())
-                    throw std::invalid_argument("Klaida! Neteisingas failo pavadinimas.");
-                error = false;
-            }
-            catch (const std::invalid_argument &e)
-            {
-                cout << e.what() << std::endl;
-            }
-        }
-    }
-    else
-        open_f.open(genFile_name);
     auto readStart = hrClock::now();
     my_buffer << open_f.rdbuf();
     open_f.close();
@@ -379,4 +304,29 @@ void ssToFile(string file_name, std::stringstream &data)
     std::ofstream out_f(file_name);
     out_f << data.rdbuf();
     out_f.close();
+}
+void openFile(std::ifstream &open_f)
+{
+    bool error = true;
+    cin.ignore();
+    while (error)
+    {
+        cout << "Iveskite failo pavadinima(numatysis pavadinimas: studentai1000000.txt): ";
+        string file_name;
+        getline(cin, file_name);
+
+        if (file_name.empty())
+            file_name = "studentai1000000.txt";
+        try
+        {
+            open_f.open(file_name);
+            if (open_f.fail())
+                throw std::invalid_argument("Klaida! Neteisingas failo pavadinimas.");
+            error = false;
+        }
+        catch (const std::invalid_argument &e)
+        {
+            cout << e.what() << std::endl;
+        }
+    }
 }

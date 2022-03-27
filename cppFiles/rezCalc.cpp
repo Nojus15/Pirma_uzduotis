@@ -31,7 +31,7 @@ void sortStudents(std::stringstream &kietiakai, std::stringstream &vargsai, vect
     auto sortStart = hrClock::now();
     for (auto &stud : studentai)
     {
-        if (stud.vid < 5)
+        if (stud.vid < 5 || stud.med < 5)
         {
             vargsai << left << setw(20) << stud.vardas;
             vargsai << left << setw(20) << stud.pavarde;
@@ -56,7 +56,7 @@ void sortStudents(std::stringstream &kietiakai, std::stringstream &vargsai, list
     auto sortStart = hrClock::now();
     for (auto &stud : studentai)
     {
-        if (stud.vid < 5)
+        if (stud.vid < 5 || stud.med < 5)
         {
             vargsai << left << setw(20) << stud.vardas;
             vargsai << left << setw(20) << stud.pavarde;
@@ -81,7 +81,7 @@ void sortStudents(std::stringstream &kietiakai, std::stringstream &vargsai, dequ
     auto sortStart = hrClock::now();
     for (auto &stud : studentai)
     {
-        if (stud.vid < 5)
+        if (stud.vid < 5 || stud.med < 5)
         {
             vargsai << left << setw(20) << stud.vardas;
             vargsai << left << setw(20) << stud.pavarde;

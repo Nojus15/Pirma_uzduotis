@@ -18,3 +18,4 @@ void bufer_write(std::string write_vardas, deque<data> &studentai, bool manual, 
 
 void genFile(int size, string file_name, int ndCount);
 void ssToFile(string file_name, std::stringstream &data);
+void openFile(std::ifstream &open_f);
