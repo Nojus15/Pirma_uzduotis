@@ -26,76 +26,53 @@ double galutinisMed(vector<int> paz, int egz)
     else
         return egz * 0.6;
 }
-void sortStudents(std::stringstream &kietiakai, std::stringstream &vargsai, vector<data> &studentai)
+void sortStudents(vector<data> &kietiakai, vector<data> &vargsai, vector<data> &studentai)
 {
     auto sortStart = hrClock::now();
     for (auto &stud : studentai)
     {
         if (stud.vid < 5 || stud.med < 5)
         {
-            vargsai << left << setw(20) << stud.vardas;
-            vargsai << left << setw(20) << stud.pavarde;
-            vargsai << left << setw(20) << stud.vid;
-            vargsai << left << setw(20) << stud.med;
-            vargsai << endl;
+            vargsai.push_back(stud);
         }
         else
         {
-            kietiakai << left << setw(20) << stud.vardas;
-            kietiakai << left << setw(20) << stud.pavarde;
-            kietiakai << left << setw(20) << stud.vid;
-            kietiakai << left << setw(20) << stud.med;
-            kietiakai << endl;
+            kietiakai.push_back(stud);
         }
     }
     studentai.clear();
     cout << "Studentu dalinimo i dvi grupes laikas: " << durationDouble(hrClock::now() - sortStart).count() << " s" << endl;
 }
-void sortStudents(std::stringstream &kietiakai, std::stringstream &vargsai, list<data> &studentai)
+
+void sortStudents(list<data> &kietiakai, list<data> &vargsai, list<data> &studentai)
 {
     auto sortStart = hrClock::now();
     for (auto &stud : studentai)
     {
         if (stud.vid < 5 || stud.med < 5)
         {
-            vargsai << left << setw(20) << stud.vardas;
-            vargsai << left << setw(20) << stud.pavarde;
-            vargsai << left << setw(20) << stud.vid;
-            vargsai << left << setw(20) << stud.med;
-            vargsai << endl;
+            vargsai.push_back(stud);
         }
         else
         {
-            kietiakai << left << setw(20) << stud.vardas;
-            kietiakai << left << setw(20) << stud.pavarde;
-            kietiakai << left << setw(20) << stud.vid;
-            kietiakai << left << setw(20) << stud.med;
-            kietiakai << endl;
+            kietiakai.push_back(stud);
         }
     }
     studentai.clear();
     cout << "Studentu dalinimo i dvi grupes laikas: " << durationDouble(hrClock::now() - sortStart).count() << " s" << endl;
 }
-void sortStudents(std::stringstream &kietiakai, std::stringstream &vargsai, deque<data> &studentai)
+void sortStudents(deque<data> &kietiakai, deque<data> &vargsai, deque<data> &studentai)
 {
     auto sortStart = hrClock::now();
     for (auto &stud : studentai)
     {
         if (stud.vid < 5 || stud.med < 5)
         {
-            vargsai << left << setw(20) << stud.vardas;
-            vargsai << left << setw(20) << stud.pavarde;
-            vargsai << left << setw(20) << stud.vid;
-            vargsai << left << setw(20) << stud.med;
-            vargsai << endl;
+            vargsai.push_back(stud);
         }
         else
         {
-            kietiakai << left << setw(20) << stud.vardas;
-            kietiakai << left << setw(20) << stud.pavarde;
-            kietiakai << left << setw(20) << stud.vid;
-            kietiakai << left << setw(20) << stud.med;
-            kietiakai << endl;
+            kietiakai.push_back(stud);
         }
     }
     studentai.clear();
