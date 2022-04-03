@@ -149,3 +149,8 @@
 | Vector         | 0.165858 s    | 0.144193 s  | 1.35095 s    | 7.77456 s     | 79.2487 s   |
 | List           | 0.0277625 s   | 0.146412 s  | 1.3733 s     | 7.87405 s     | 81.0546 s   |
 | Deque          | 0.0169764 s   | 0.142337 s  | 1.37586 s    | 7.89976 s     | 80.409 s    |
+
+### Sistemos parametrai
+  - Intel i7-10750H 2.6Hz
+  - SSD Samsung MZALQ512HALU
+  - 16GB 2933MHz SODIMM
