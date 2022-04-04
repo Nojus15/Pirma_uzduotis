@@ -52,6 +52,12 @@ int main()
             bufer_read(studentai, gen, "studentai1000.txt", fopenTime);
             calcRez(studentai, rez, manual);
             sortStudents(kietiakai, vargsai, studentai);
+
+            std::sort(kietiakai.begin(), kietiakai.end(), [](data &a, data &b)
+                      { return a.vardas < b.vardas; });
+            std::sort(vargsai.begin(), vargsai.end(), [](data &a, data &b)
+                      { return a.vardas < b.vardas; });
+
             auto newWrite = hrClock::now();
             containerToFile("kietiakai.txt", kietiakai);
             containerToFile("vargsai.txt", vargsai);
@@ -69,6 +75,10 @@ int main()
             bufer_read(studentai, gen, "studentai1000.txt", fopenTime);
             calcRez(studentai, rez, manual);
             sortStudents(kietiakai, vargsai, studentai);
+
+            kietiakai.sort(compare);
+            vargsai.sort(compare);
+
             auto newWrite = hrClock::now();
             containerToFile("kietiakai.txt", kietiakai);
             containerToFile("vargsai.txt", vargsai);
@@ -88,6 +98,11 @@ int main()
             sortStudents(kietiakai, vargsai, studentai);
 
             auto newWrite = hrClock::now();
+            std::sort(kietiakai.begin(), kietiakai.end(), [](data &a, data &b)
+                      { return a.vardas < b.vardas; });
+            std::sort(vargsai.begin(), vargsai.end(), [](data &a, data &b)
+                      { return a.vardas < b.vardas; });
+
             containerToFile("kietiakai.txt", kietiakai);
             containerToFile("vargsai.txt", vargsai);
             cout << "Surusiuotu studentu isvedimas i naujus failus uztruko: " << durationDouble(hrClock::now() - newWrite).count() << " s" << endl;

@@ -68,5 +68,6 @@
         "xtree": "cpp",
         "xutility": "cpp",
         "deque": "cpp"
-    }
+    },
+    "C_Cpp.errorSquiggles": "Disabled"
 }

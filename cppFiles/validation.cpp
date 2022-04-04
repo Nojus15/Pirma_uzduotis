@@ -39,3 +39,7 @@ int validMode(int from, int to)
         cout << "Blogas skaicius" << endl;
     }
 }
+bool compare(data &a, data &b)
+{
+    return a.vardas < b.vardas;
+}

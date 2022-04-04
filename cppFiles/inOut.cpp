@@ -313,6 +313,7 @@ void genFile(int size, string file_name, int ndCount)
 void containerToFile(string file_name, vector<data> &data)
 {
     std::stringstream out;
+    out << left << setw(20) << "Vardas" << left << setw(20) << "Pavarde" << left << setw(20) << "Vid." << left << setw(20) << "Med." << endl;
     for (auto &stud : data)
     {
         out << left << setw(20) << stud.vardas;
@@ -328,6 +329,7 @@ void containerToFile(string file_name, vector<data> &data)
 void containerToFile(string file_name, list<data> &data)
 {
     std::stringstream out;
+    out << left << setw(20) << "Vardas" << left << setw(20) << "Pavarde" << left << setw(20) << "Vid." << left << setw(20) << "Med." << endl;
     for (auto &stud : data)
     {
         out << left << setw(20) << stud.vardas;
@@ -343,6 +345,7 @@ void containerToFile(string file_name, list<data> &data)
 void containerToFile(string file_name, deque<data> &data)
 {
     std::stringstream out;
+    out << left << setw(20) << "Vardas" << left << setw(20) << "Pavarde" << left << setw(20) << "Vid." << left << setw(20) << "Med." << endl;
     for (auto &stud : data)
     {
         out << left << setw(20) << stud.vardas;
