@@ -21,3 +21,5 @@ void containerToFile(string file_name, vector<data> &data);
 void containerToFile(string file_name, list<data> &data);
 void containerToFile(string file_name, deque<data> &data);
 void openFile(std::ifstream &open_f);
+
+void printToFile(string text);

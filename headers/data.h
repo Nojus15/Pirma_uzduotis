@@ -24,6 +24,7 @@ using std::mt19937;
 using std::right;
 using std::setw;
 using std::string;
+using std::to_string;
 using std::vector;
 
 using hrClock = std::chrono::high_resolution_clock;

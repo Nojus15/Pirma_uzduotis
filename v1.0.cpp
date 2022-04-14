@@ -39,6 +39,8 @@ int main()
 
     if (!manual)
     {
+        auto programStart = hrClock::now();
+
         double fopenTime = 0;
         cout << "Pasirinkite konteinerio tipa: 1 - vector, 2 - list, 3 - deque" << endl;
         int contType = validMode(1, 3);
@@ -50,7 +52,7 @@ int main()
             vector<data> studentai;
             vector<data> kietiakai;
             vector<data> vargsai;
-            auto programStart = hrClock::now();
+            programStart = hrClock::now();
             if (stratType == 1)
             {
                 bufer_read(studentai, gen, "studentai1000.txt", fopenTime);
@@ -72,9 +74,8 @@ int main()
             auto newWrite = hrClock::now();
             containerToFile("kietiakai.txt", kietiakai);
             containerToFile("vargsai.txt", vargsai);
-            cout << "Surusiuotu studentu isvedimas i naujus failus uztruko: " << durationDouble(hrClock::now() - newWrite).count() << " s" << endl;
-            cout << "Visos programos veikimo laikas: " << durationDouble(hrClock::now() - programStart).count() - fopenTime << " s" << endl;
-            cout << "-------------------------" << endl;
+
+            cout << "Surusiuotu studentu isvedimas i naujus failus uztruko: " << durationDouble(hrClock::now() - newWrite).count() << endl;
         }
         else if (contType == 2)
         {
@@ -82,7 +83,7 @@ int main()
             list<data> kietiakai;
             list<data> vargsai;
 
-            auto programStart = hrClock::now();
+            programStart = hrClock::now();
             if (stratType == 1)
             {
                 bufer_read(studentai, gen, "studentai1000.txt", fopenTime);
@@ -103,8 +104,6 @@ int main()
             containerToFile("kietiakai.txt", kietiakai);
             containerToFile("vargsai.txt", vargsai);
             cout << "Surusiuotu studentu isvedimas i naujus failus uztruko: " << durationDouble(hrClock::now() - newWrite).count() << " s" << endl;
-            cout << "Visos programos veikimo laikas: " << durationDouble(hrClock::now() - programStart).count() - fopenTime << " s" << endl;
-            cout << "-------------------------" << endl;
         }
         else if (contType == 3)
         {
@@ -112,7 +111,7 @@ int main()
             deque<data> kietiakai;
             deque<data> vargsai;
 
-            auto programStart = hrClock::now();
+            programStart = hrClock::now();
             if (stratType == 1)
             {
                 bufer_read(studentai, gen, "studentai1000.txt", fopenTime);
@@ -135,9 +134,32 @@ int main()
             containerToFile("kietiakai.txt", kietiakai);
             containerToFile("vargsai.txt", vargsai);
             cout << "Surusiuotu studentu isvedimas i naujus failus uztruko: " << durationDouble(hrClock::now() - newWrite).count() << " s" << endl;
-            cout << "Visos programos veikimo laikas: " << durationDouble(hrClock::now() - programStart).count() - fopenTime << " s" << endl;
-            cout << "-------------------------" << endl;
         }
+        auto programEnd = durationDouble(hrClock::now() - programStart).count() - fopenTime;
+        cout << "Visos programos veikimo laikas: " << programEnd << " s" << endl;
+        switch (contType)
+        {
+        case 1:
+            printToFile("Vector     ");
+            break;
+        case 2:
+            printToFile("List       ");
+            break;
+        case 3:
+            printToFile("Deque      ");
+            break;
+        }
+        switch (stratType)
+        {
+        case 1:
+            printToFile("1    ");
+            break;
+        case 2:
+            printToFile("2    ");
+            break;
+        }
+        printToFile("Visos programos veikimo laikas: " + to_string(programEnd) + " s\n");
+        cout << "-------------------------" << endl;
     }
     else
     {

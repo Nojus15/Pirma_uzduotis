@@ -1,6 +1,7 @@
 #pragma once
 
 #include "data.h"
+#include "inOut.h"
 
 double galutinisVid(vector<int> paz, int egz);
 double galutinisMed(vector<int> paz, int egz);
@@ -21,5 +22,3 @@ void sortStudents(deque<data> &kietiakai, deque<data> &vargsai, deque<data> &stu
 void sortStudents2(vector<data> &kietiakai, vector<data> &vargsai);
 void sortStudents2(list<data> &kietiakai, list<data> &vargsai);
 void sortStudents2(deque<data> &kietiakai, deque<data> &vargsai);
-
-bool isVargsas(data a);
