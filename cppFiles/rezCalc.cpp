@@ -1,4 +1,6 @@
 #include "../headers/rezCalc.h"
+#include <algorithm>
+#include <iterator>
 
 double galutinisVid(vector<int> paz, int egz)
 {
@@ -25,6 +27,33 @@ double galutinisMed(vector<int> paz, int egz)
     }
     else
         return egz * 0.6;
+}
+bool isVargsas(data a)
+{
+    if (a.med < 5 || a.vid < 5)
+        return true;
+    return false;
+}
+void sortStudents2(vector<data> &kietiakai, vector<data> &vargsai)
+{
+    auto sortStart = hrClock::now();
+    copy_if(kietiakai.begin(), kietiakai.end(), back_inserter(vargsai), isVargsas);
+    kietiakai.erase(remove_if(kietiakai.begin(), kietiakai.end(), isVargsas), kietiakai.end());
+    cout << "Studentu dalinimo i dvi grupes laikas: " << durationDouble(hrClock::now() - sortStart).count() << " s" << endl;
+}
+void sortStudents2(list<data> &kietiakai, list<data> &vargsai)
+{
+    auto sortStart = hrClock::now();
+    copy_if(kietiakai.begin(), kietiakai.end(), back_inserter(vargsai), isVargsas);
+    kietiakai.erase(remove_if(kietiakai.begin(), kietiakai.end(), isVargsas), kietiakai.end());
+    cout << "Studentu dalinimo i dvi grupes laikas: " << durationDouble(hrClock::now() - sortStart).count() << " s" << endl;
+}
+void sortStudents2(deque<data> &kietiakai, deque<data> &vargsai)
+{
+    auto sortStart = hrClock::now();
+    copy_if(kietiakai.begin(), kietiakai.end(), back_inserter(vargsai), isVargsas);
+    kietiakai.erase(remove_if(kietiakai.begin(), kietiakai.end(), isVargsas), kietiakai.end());
+    cout << "Studentu dalinimo i dvi grupes laikas: " << durationDouble(hrClock::now() - sortStart).count() << " s" << endl;
 }
 void sortStudents(vector<data> &kietiakai, vector<data> &vargsai, vector<data> &studentai)
 {

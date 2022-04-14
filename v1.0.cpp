@@ -42,16 +42,27 @@ int main()
         double fopenTime = 0;
         cout << "Pasirinkite konteinerio tipa: 1 - vector, 2 - list, 3 - deque" << endl;
         int contType = validMode(1, 3);
+        cout << "Kokia strategija norite naudoti? Jei taupyti laika iveskite 1 (1 strategija), jei taupyti atminti iveskite 2 (2 strategija)." << endl;
+        int stratType = validMode(1, 2);
+
         if (contType == 1)
         {
             vector<data> studentai;
             vector<data> kietiakai;
             vector<data> vargsai;
-
             auto programStart = hrClock::now();
-            bufer_read(studentai, gen, "studentai1000.txt", fopenTime);
-            calcRez(studentai, rez, manual);
-            sortStudents(kietiakai, vargsai, studentai);
+            if (stratType == 1)
+            {
+                bufer_read(studentai, gen, "studentai1000.txt", fopenTime);
+                calcRez(studentai, rez, manual);
+                sortStudents(kietiakai, vargsai, studentai);
+            }
+            else if (stratType == 2)
+            {
+                bufer_read(kietiakai, gen, "studentai1000.txt", fopenTime);
+                calcRez(kietiakai, rez, manual);
+                sortStudents2(kietiakai, vargsai);
+            }
 
             std::sort(kietiakai.begin(), kietiakai.end(), [](data &a, data &b)
                       { return a.vardas < b.vardas; });
@@ -72,9 +83,18 @@ int main()
             list<data> vargsai;
 
             auto programStart = hrClock::now();
-            bufer_read(studentai, gen, "studentai1000.txt", fopenTime);
-            calcRez(studentai, rez, manual);
-            sortStudents(kietiakai, vargsai, studentai);
+            if (stratType == 1)
+            {
+                bufer_read(studentai, gen, "studentai1000.txt", fopenTime);
+                calcRez(studentai, rez, manual);
+                sortStudents(kietiakai, vargsai, studentai);
+            }
+            else if (stratType == 2)
+            {
+                bufer_read(kietiakai, gen, "studentai1000.txt", fopenTime);
+                calcRez(kietiakai, rez, manual);
+                sortStudents2(kietiakai, vargsai);
+            }
 
             kietiakai.sort(compare);
             vargsai.sort(compare);
@@ -93,9 +113,18 @@ int main()
             deque<data> vargsai;
 
             auto programStart = hrClock::now();
-            bufer_read(studentai, gen, "studentai1000.txt", fopenTime);
-            calcRez(studentai, rez, manual);
-            sortStudents(kietiakai, vargsai, studentai);
+            if (stratType == 1)
+            {
+                bufer_read(studentai, gen, "studentai1000.txt", fopenTime);
+                calcRez(studentai, rez, manual);
+                sortStudents(kietiakai, vargsai, studentai);
+            }
+            else if (stratType == 2)
+            {
+                bufer_read(kietiakai, gen, "studentai1000.txt", fopenTime);
+                calcRez(kietiakai, rez, manual);
+                sortStudents2(kietiakai, vargsai);
+            }
 
             auto newWrite = hrClock::now();
             std::sort(kietiakai.begin(), kietiakai.end(), [](data &a, data &b)
