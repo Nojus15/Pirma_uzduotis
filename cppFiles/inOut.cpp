@@ -383,9 +383,3 @@ void openFile(std::ifstream &open_f)
         }
     }
 }
-void printToFile(string text)
-{
-    std::ofstream rezOut("rezOut.txt", std::ios_base::app);
-    rezOut << text;
-    rezOut.close();
-}

@@ -137,28 +137,6 @@ int main()
         }
         auto programEnd = durationDouble(hrClock::now() - programStart).count() - fopenTime;
         cout << "Visos programos veikimo laikas: " << programEnd << " s" << endl;
-        switch (contType)
-        {
-        case 1:
-            printToFile("Vector     ");
-            break;
-        case 2:
-            printToFile("List       ");
-            break;
-        case 3:
-            printToFile("Deque      ");
-            break;
-        }
-        switch (stratType)
-        {
-        case 1:
-            printToFile("1    ");
-            break;
-        case 2:
-            printToFile("2    ");
-            break;
-        }
-        printToFile("Visos programos veikimo laikas: " + to_string(programEnd) + " s\n");
         cout << "-------------------------" << endl;
     }
     else
